@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<p th:text="'id '+${order.id}"></p>
+<p th:text="'id '+${order.goods_id}"></p>
+<p th:text="'user_id '+${order.user_id}"></p>
+<p th:text="'time '+${order.time}"></p>
+<p th:text="'trading_flow '+${order.trading_flow}"></p>
+<p th:text="'note '+${order.note}"></p>
+<p th:text="'status '+${order.status}"></p>
+<p th:text="'goods_count '+${order.goods_count}"></p>
+<p th:text="'goods_price '+${order.goods_price}"></p>
+</body>
+</html>
