@@ -3,6 +3,9 @@ package com.xiaomi.controller;
 import com.xiaomi.dao.UserMapper;
 import com.xiaomi.pojo.User;
 import com.xiaomi.service.UserService;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,15 +23,27 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(String username, String password,String check, HttpSession session){
-        User user = null;
+//        User user = null;
+//        String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
+//        if (!check.equalsIgnoreCase(vrifyCode)) return "login";
+//        if ((user = userService.login(username,password)) != null) {
+//            session.setAttribute(session.getId(),user.getId());
+//            session.setAttribute("user#"+user.getId(),user);
+//            return "redirect:/index";
+//        }
+//        return "login";
         String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
         if (!check.equalsIgnoreCase(vrifyCode)) return "login";
-        if ((user = userService.login(username,password)) != null) {
-            session.setAttribute(session.getId(),user.getId());
-            session.setAttribute("user#"+user.getId(),user);
+
+        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+        Subject subject = SecurityUtils.getSubject();
+        try{
+            subject.login(token);
             return "redirect:/index";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "login";
         }
-        return "login";
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST)

@@ -32,11 +32,6 @@ public class IndexController {
         return "login";
     }
 
-    @RequestMapping("/login")
-    public String login2(){
-        return "login";
-    }
-
     @RequestMapping("/alipayReturn{id}")
     public String alipayReturn(){
         return "redirect:/index";

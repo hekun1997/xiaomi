@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper = null;
 
-    @Cacheable(value = "user",key = "#root.args[0]",unless = "#result eq null ")
+    @Cacheable(value = "user",key = "#username",unless = "#result eq null ")
     @Override
     public User login(String username, String password) {
         return userMapper.login(username,password);

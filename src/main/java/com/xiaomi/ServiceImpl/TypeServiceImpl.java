@@ -24,7 +24,7 @@ public class TypeServiceImpl implements TypeService {
         return typeMapper.getTypeById(id);
     }
 
-    @Cacheable(cacheNames = "getTypeForIndex",key = "'index测试'")
+    @Cacheable(value = "index",key = "")
     @Override
     public List<Type> getTypeForIndex() {
         return typeMapper.getTypeForIndex();
