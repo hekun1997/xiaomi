@@ -1,5 +1,6 @@
 package com.xiaomi.controller;
 
+import com.xiaomi.configuration.web.UserThread;
 import com.xiaomi.dao.UserMapper;
 import com.xiaomi.pojo.User;
 import com.xiaomi.service.UserService;
@@ -29,6 +30,9 @@ public class UserController {
         if ((user = userService.login(username,password)) != null) {
             session.setAttribute(session.getId(),user.getId());
             session.setAttribute("user#"+user.getId(),user);
+
+            session.setAttribute("userInfo",user);
+
             return "redirect:/index";
         }
         return "login";

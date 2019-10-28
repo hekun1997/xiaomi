@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import com.xiaomi.configuration.web.UserThread;
 import com.xiaomi.dao.*;
 import com.xiaomi.pojo.*;
 import com.xiaomi.service.*;
@@ -37,33 +38,16 @@ public class IndexController {
     @Autowired
     GoodsMapper goodsMapper;
 
-    @RequestMapping("")
-    public String login(){
-        return "login";
-    }
-
-    @RequestMapping("/alipayReturn{id}")
-    public String alipayReturn(){
-        return "redirect:/index";
-    }
-
     @RequestMapping("/index")
     public ModelAndView index(HttpSession session){
         List<Type> types = typeService.getTypeForIndex();
         Integer userId = (Integer) session.getAttribute(session.getId());
         User user = (User) session.getAttribute("user#"+userId);
-        System.out.println(user.toString());
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("Types",types);
         mv.addObject("User",user);
         return mv;
     }
-
-    @RequestMapping("/register")
-    public String register(){
-        return "register";
-    }
-
 
     @RequestMapping(value = "/verification",method = RequestMethod.POST)
     @ResponseBody
@@ -75,17 +59,18 @@ public class IndexController {
         return true;
     }
 
-    @RequestMapping("/alipayNotify")
-    public String alipayNotify(){
-        return "alipay_notify";
-    }
-
     @RequestMapping("/pageHelper")
     @ResponseBody
     public Object pageHelper(Integer pageNum,Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
         Page<Goods> page = goodsMapper.getGoodsByName2("小米");
         return page;
+    }
+
+    @RequestMapping("/test")
+    public String test(){
+        System.out.println("最后的测试方法 "+UserThread.get());
+        return "";
     }
 
     /**
