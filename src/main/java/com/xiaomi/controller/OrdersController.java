@@ -109,6 +109,15 @@ public class OrdersController {
         return maxCount;
     }
 
+    @RequestMapping("/orderTest")//商品详情页面的测试
+    @ResponseBody
+    public String orderTest(@RequestParam Map<String,Object> params){
+        for (String key : params.keySet()){
+            System.out.println("key : "+key+" -> "+params.get(key));
+        }
+        return "接收成功!";
+    }
+
     @RequestMapping("/buy")
     @ResponseBody
     public String buy(@RequestParam Map<String,Object> paramsBody){
@@ -116,9 +125,14 @@ public class OrdersController {
         Integer goodsCount = 0;
         Integer userId = null;
         BigDecimal price = new BigDecimal(0.0);
-        for (String key : paramsBody.keySet()) requestStr += key;
+
+        for (String key : paramsBody.keySet()) {
+            requestStr += key;
+        }
+
         JSONArray object = JSON.parseArray(requestStr);
         List<OrdersBody> paramsList = new ArrayList<>();
+
         for (Object obj : object){
             JSONObject jsonObject = JSON.parseObject(obj.toString());
             OrdersBody ordersBody = new OrdersBody();
@@ -126,6 +140,7 @@ public class OrdersController {
             ordersBody.setCount(jsonObject.getInteger("count"));
             paramsList.add(ordersBody);
         }
+
         for (OrdersBody ordersBody : paramsList){
             goodsCount += ordersBody.getCount();
             Orders orders = ordersService.getOrderById(ordersBody.getOrdersId());
@@ -134,9 +149,9 @@ public class OrdersController {
             price = price.add(tempPrice);
             ordersService.updateOrdersByIdAndGoodsCount(ordersBody.getOrdersId(),ordersBody.getCount());
         }
+
         String aLipayResult = AliPayTools.pay(userId,"批量购买",goodsCount,Float.valueOf(price.toString()),TradingFlowUtil.get());
+
         return aLipayResult;
     }
-
-
 }

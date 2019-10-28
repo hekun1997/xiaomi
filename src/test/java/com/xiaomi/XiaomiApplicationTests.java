@@ -11,6 +11,7 @@ public class XiaomiApplicationTests {
 
     @Test
     public void contextLoads() {
+
     }
 
 }

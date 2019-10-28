@@ -1,10 +1,13 @@
 package com.xiaomi.controller;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xiaomi.dao.*;
 import com.xiaomi.pojo.*;
 import com.xiaomi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +26,13 @@ import java.util.Map;
 @Controller
 public class IndexController {
     @Autowired
-    DefaultKaptcha defaultKaptcha = null;
+    DefaultKaptcha defaultKaptcha ;
     @Autowired
-    TypeService typeService = null;
+    TypeService typeService ;
+    @Autowired
+    UserMapper userMapper;
+    @Autowired
+    RedisTemplate redisTemplate;
 
     @RequestMapping("")
     public String login(){
@@ -42,6 +49,7 @@ public class IndexController {
         List<Type> types = typeService.getTypeForIndex();
         Integer userId = (Integer) session.getAttribute(session.getId());
         User user = (User) session.getAttribute("user#"+userId);
+        System.out.println(user.toString());
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("Types",types);
         mv.addObject("User",user);
@@ -54,21 +62,13 @@ public class IndexController {
     }
 
 
-
-    @RequestMapping("/orderTest")//商品详情页面的测试
-    @ResponseBody
-    public String orderTest(@RequestParam Map<String,Object> params){
-        for (String key : params.keySet()){
-            System.out.println("key : "+key+" -> "+params.get(key));
-        }
-        return "接收成功!";
-    }
-
     @RequestMapping(value = "/verification",method = RequestMethod.POST)
     @ResponseBody
     public boolean tytest(@RequestParam("check") String check,HttpSession session){
         String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
-        if (!check.equalsIgnoreCase(vrifyCode)) return false;
+        if (!check.equalsIgnoreCase(vrifyCode)) {
+            return false;
+        }
         return true;
     }
 
@@ -77,6 +77,21 @@ public class IndexController {
         return "alipay_notify";
     }
 
+    @RequestMapping("/pageHelper")
+    @ResponseBody
+    public Page<User> pageHelper(Integer pageNum,Integer pageSize){
+        PageHelper.startPage(pageNum,pageSize);
+        Page<User> userList = userMapper.getUserList();
+        return userList;
+    }
+
+    /**
+     * 获取验证码
+     * @param session
+     * @param httpServletRequest
+     * @param httpServletResponse
+     * @throws Exception
+     */
     @RequestMapping("/defaultKaptcha")
     public void defaultKaptcha(HttpSession session,HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
         byte[] captchaChallengeAsJpeg = null;

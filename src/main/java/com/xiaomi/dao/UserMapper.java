@@ -1,5 +1,6 @@
 package com.xiaomi.dao;
 
+import com.github.pagehelper.Page;
 import com.xiaomi.pojo.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,4 +22,7 @@ public interface UserMapper {
 
     @UpdateProvider(type = UserMapperProvider.class,method = "UpdateUser")
     int UpdateUser(User user);
+
+    @Select("select * from user")
+    Page<User> getUserList();
 }

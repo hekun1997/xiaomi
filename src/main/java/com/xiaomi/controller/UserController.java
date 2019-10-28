@@ -23,27 +23,29 @@ public class UserController {
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(String username, String password,String check, HttpSession session){
-//        User user = null;
-//        String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
-//        if (!check.equalsIgnoreCase(vrifyCode)) return "login";
-//        if ((user = userService.login(username,password)) != null) {
-//            session.setAttribute(session.getId(),user.getId());
-//            session.setAttribute("user#"+user.getId(),user);
-//            return "redirect:/index";
-//        }
-//        return "login";
+        User user = null;
         String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
         if (!check.equalsIgnoreCase(vrifyCode)) return "login";
-
-        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
-        Subject subject = SecurityUtils.getSubject();
-        try{
-            subject.login(token);
+        if ((user = userService.login(username,password)) != null) {
+            session.setAttribute(session.getId(),user.getId());
+            session.setAttribute("user#"+user.getId(),user);
             return "redirect:/index";
-        }catch (Exception e){
-            e.printStackTrace();
-            return "login";
         }
+        return "login";
+//        String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
+//        if (!check.equalsIgnoreCase(vrifyCode)) {
+//            return "login";
+//        }
+//
+//        UsernamePasswordToken token = new UsernamePasswordToken(username,password);
+//        Subject subject = SecurityUtils.getSubject();
+//        try{
+//            subject.login(token);
+//            return "redirect:/index";
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            return "login";
+//        }
     }
 
     @RequestMapping(value = "",method = RequestMethod.POST)
