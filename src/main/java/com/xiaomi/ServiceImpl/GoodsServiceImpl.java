@@ -31,7 +31,7 @@ public class GoodsServiceImpl implements GoodsService {
         return goodsMapper.getGoodsByTypeId(type_id);
     }
 
-    @Cacheable(cacheNames = "getGoodsByName")
+    //@Cacheable(cacheNames = "getGoodsByName")
     @Override
     public List<Goods> getGoodsByName(String goods_name) {
         return goodsMapper.getGoodsByName(goods_name);

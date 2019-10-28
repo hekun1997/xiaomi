@@ -34,6 +34,8 @@ public class IndexController {
     UserMapper userMapper;
     @Autowired
     RedisTemplate redisTemplate;
+    @Autowired
+    GoodsMapper goodsMapper;
 
     @RequestMapping("")
     public String login(){
@@ -82,9 +84,7 @@ public class IndexController {
     @ResponseBody
     public Object pageHelper(Integer pageNum,Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
-        List<User> userList = userMapper.getAllUser();
-        //Page<User> userList = userMapper.getAllUser();
-        PageInfo<User> page = new PageInfo<>(userList);
+        Page<Goods> page = goodsMapper.getGoodsByName2("小米");
         return page;
     }
 

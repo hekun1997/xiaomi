@@ -59,12 +59,18 @@ public class GoodsController {
     }
 
     @RequestMapping(value = "/search",method = RequestMethod.GET)
-    public String getGoodsByName(@RequestParam("goods_name")String goods_name, HttpSession session,Model m){
+    public String getGoodsByName(@RequestParam("goods_name")String goods_name,
+                                 @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                 @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
+                                 HttpSession session,Model m){
+        PageHelper.startPage(pageNum,pageSize);
         Integer userId = (Integer) session.getAttribute(session.getId());
         User user = (User) session.getAttribute("user#"+userId);
         List<Goods> goods = goodsService.getGoodsByName(goods_name);
+        PageInfo<Goods> page = new PageInfo<>(goods);
         m.addAttribute("User",user);
-        m.addAttribute("Goods",goods);
+        m.addAttribute("Goods",page);
+        m.addAttribute("Goods_name",goods_name);
         return "liebiao";
     }
 
@@ -78,7 +84,7 @@ public class GoodsController {
         User user = (User) session.getAttribute("user#"+userId);
         List<Goods> goods = goodsService.getGoodsByName(goods_name);
         PageInfo<Goods> page = new PageInfo<>(goods);
-        m.addAttribute("Goods_name",goods_name);
+
         m.addAttribute("User",user);
         m.addAttribute("Goods",page);
         return "liebiao";

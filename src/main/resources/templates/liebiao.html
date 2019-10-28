@@ -15,7 +15,11 @@
 			// 	$('#end_page').attr('href',local_url);
 			// })
 		</script>
-
+		<style>
+			#page{
+				text-align: center;
+			}
+		</style>
 	</head>
 	<body>
 	<!-- start header -->
@@ -115,7 +119,9 @@
 				<div class="clear"></div>
 			</div>
 			<div>
-				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=1'">首页</a>
+			<div id="page">
+				<p>&nbsp;</p>
+				<a id="startPage" th:href="'?goods_name='+${Goods_name}+'&pageNum=1'">首页</a>
 				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=' + ${Goods.pageNum - 1}">上一页</a>
 				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=' + ${Goods.pageNum + 1}">下一页</a>
 				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=' + ${Goods.pages}">末页</a>
