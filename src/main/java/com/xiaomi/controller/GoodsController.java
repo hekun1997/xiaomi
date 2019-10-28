@@ -1,5 +1,6 @@
 package com.xiaomi.controller;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xiaomi.dao.GoodsMapper;
@@ -67,4 +68,19 @@ public class GoodsController {
         return "liebiao";
     }
 
+    @RequestMapping(value = "/search2",method = RequestMethod.GET)
+    public String getGoodsByName2(@RequestParam(value = "goods_name")String goods_name,
+                                  @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                                  @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
+                                  HttpSession session,Model m){
+        PageHelper.startPage(pageNum,pageSize);
+        Integer userId = (Integer) session.getAttribute(session.getId());
+        User user = (User) session.getAttribute("user#"+userId);
+        List<Goods> goods = goodsService.getGoodsByName(goods_name);
+        PageInfo<Goods> page = new PageInfo<>(goods);
+        m.addAttribute("Goods_name",goods_name);
+        m.addAttribute("User",user);
+        m.addAttribute("Goods",page);
+        return "liebiao";
+    }
 }

@@ -1,5 +1,6 @@
 package com.xiaomi.ServiceImpl;
 
+import com.github.pagehelper.Page;
 import com.xiaomi.dao.GoodsMapper;
 import com.xiaomi.pojo.Goods;
 import com.xiaomi.service.GoodsService;
@@ -13,7 +14,7 @@ import java.util.List;
 @Service
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
-    GoodsMapper goodsMapper = null;
+    GoodsMapper goodsMapper;
 
     @Override
     public List<Goods> getAllGoods() {
@@ -34,5 +35,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> getGoodsByName(String goods_name) {
         return goodsMapper.getGoodsByName(goods_name);
+    }
+
+    @Override
+    public Page<Goods> getGoodsByName2(String goods_name) {
+        return goodsMapper.getGoodsByName2(goods_name);
     }
 }

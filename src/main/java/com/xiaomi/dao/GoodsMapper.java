@@ -1,5 +1,6 @@
 package com.xiaomi.dao;
 
+import com.github.pagehelper.Page;
 import com.xiaomi.pojo.Goods;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
@@ -53,4 +54,17 @@ public interface GoodsMapper {
                     one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getLowestVersionByGoodsSId",fetchType = FetchType.EAGER)),
     })
     List<Goods> getGoodsByName(@Param("goods_name")String goods_name);
+
+    @Select("select * from goods where goods_name like concat('%',#{goods_name},'%')")
+    @Results(value = {
+            @Result(id = true,column = "id",property = "id"),
+            @Result(column = "goods_name",property = "goods_name"),
+            @Result(column = "goods_description",property = "goods_description"),
+            @Result(column = "type_id",property = "type_id"),
+            @Result(column = "id",property = "goodsImage",
+                    one = @One(select = "com.xiaomi.dao.ImageMapper.getImageByGoodsId",fetchType = FetchType.EAGER)),
+            @Result(column = "id",property = "lowestGoodsVersion",
+                    one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getLowestVersionByGoodsSId",fetchType = FetchType.EAGER)),
+    })
+    Page<Goods> getGoodsByName2(@Param("goods_name")String goods_name);
 }

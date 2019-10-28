@@ -5,6 +5,17 @@
         <meta name="author" content="order by dede58.com"/>
 		<title>小米手机列表</title>
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
+		<script src="https://how2j.cn/study/jquery.min.js"></script>
+		<script type="text/javascript">
+			// $(document).ready(function () {
+			// 	var local_url = window.location.href;
+			// 	$('#start_page').attr('href',local_url);
+			// 	$('#last_page').attr('href',local_url);
+			// 	$('#next_page').attr('href',local_url+'&pageNum=');
+			// 	$('#end_page').attr('href',local_url);
+			// })
+		</script>
+
 	</head>
 	<body>
 	<!-- start header -->
@@ -35,7 +46,7 @@
 					</ul>
 				</div>
 				<div class="right fr">
-					<div class="gouwuche fr"><a th:href="'/temp/'+${User.getId()}">购物车</a></div>
+					<div class="gouwuche fr"><a th:href="'/temp/'+${User.id}">购物车</a></div>
 					<div class="fr">
 						<ul>
 							<li><a href="./login.html" target="_blank">登录</a></li>
@@ -94,7 +105,7 @@
 				<span th:text="${Type.goods_type}"></span>
 			</div>
 			<div class="main center">
-				<div th:each="goods : ${Goods}" class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
+				<div th:each="goods : ${Goods.list}" class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
 					<div class="sub_mingxing"><a th:href="'/goods/'+${goods.id}" target="_blank"><img th:src="${goods.goodsImage.large_src}" alt=""></a></div>
 					<div class="pinpai"><a href="#" target="_blank"><span th:text="${goods.goods_name}"></span></a></div>
 					<div class="youhui"><span th:text="${goods.goods_description}"></span></div>
@@ -103,7 +114,12 @@
 
 				<div class="clear"></div>
 			</div>
-			<div> <a >首页</a> <a>上一页</a>  <a>下一页</a> <a>末页</a></div>
+			<div>
+				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=1'">首页</a>
+				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=' + ${Goods.pageNum - 1}">上一页</a>
+				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=' + ${Goods.pageNum + 1}">下一页</a>
+				<a th:href="'?goods_name='+${Goods_name}+'&pageNum=' + ${Goods.pages}">末页</a>
+			</div>
 				<div class="clear"></div>
 			</div>
 		</div>

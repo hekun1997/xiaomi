@@ -5,6 +5,8 @@ import com.xiaomi.pojo.User;
 import org.apache.ibatis.annotations.*;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     @Select("select * from user where username = #{username} and password = #{password}")
@@ -25,4 +27,7 @@ public interface UserMapper {
 
     @Select("select * from user")
     Page<User> getUserList();
+
+    @Select("select * from user")
+    List<User> getAllUser();
 }

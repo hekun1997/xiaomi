@@ -2,6 +2,7 @@ package com.xiaomi.controller;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xiaomi.dao.*;
 import com.xiaomi.pojo.*;
@@ -79,10 +80,12 @@ public class IndexController {
 
     @RequestMapping("/pageHelper")
     @ResponseBody
-    public Page<User> pageHelper(Integer pageNum,Integer pageSize){
+    public Object pageHelper(Integer pageNum,Integer pageSize){
         PageHelper.startPage(pageNum,pageSize);
-        Page<User> userList = userMapper.getUserList();
-        return userList;
+        List<User> userList = userMapper.getAllUser();
+        //Page<User> userList = userMapper.getAllUser();
+        PageInfo<User> page = new PageInfo<>(userList);
+        return page;
     }
 
     /**
