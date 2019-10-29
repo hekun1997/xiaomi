@@ -20,7 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 public class XiaomiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(XiaomiApplication.class, args);
+        SpringApplication.run( XiaomiApplication.class, args);
     }
 
 }
