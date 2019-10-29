@@ -3,6 +3,7 @@ package com.xiaomi.controller;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xiaomi.configuration.web.UserThread;
 import com.xiaomi.dao.GoodsMapper;
 import com.xiaomi.dao.TypeMapper;
 import com.xiaomi.pojo.Goods;
@@ -35,8 +36,9 @@ public class GoodsController {
     public ModelAndView getGoodsDetail(@PathVariable Integer id, HttpSession session){
         ModelAndView mv = new ModelAndView("xiangqing");
         Goods goods = goodsService.getGoodsById(id);
-        Integer userId = (Integer) session.getAttribute(session.getId());
-        User user = (User) session.getAttribute("user#"+userId);
+        //Integer userId = (Integer) session.getAttribute(session.getId());
+        //User user = (User) session.getAttribute("user#"+userId);
+        User user = UserThread.get();
         mv.addObject("User",user);
         mv.addObject("goods",goods);
         mv.addObject("image",goods.getGoodsImage());
@@ -49,8 +51,7 @@ public class GoodsController {
     public String goods(@PathVariable("id")Integer id, Model m, HttpSession session){
         Type type = typeService.getTypeById(id);
         List<Goods> goods = goodsService.getGoodsByTypeId(id);
-        Integer userId = (Integer) session.getAttribute(session.getId());
-        User user = (User) session.getAttribute("user#"+userId);
+        User user = UserThread.get();
         m.addAttribute("User",user);
         m.addAttribute("Goods",goods);
         m.addAttribute("Type",type);
@@ -64,8 +65,9 @@ public class GoodsController {
                                  @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
                                  HttpSession session,Model m){
         PageHelper.startPage(pageNum,pageSize);
-        Integer userId = (Integer) session.getAttribute(session.getId());
-        User user = (User) session.getAttribute("user#"+userId);
+        //Integer userId = (Integer) session.getAttribute(session.getId());
+        //User user = (User) session.getAttribute("user#"+userId);
+        User user = UserThread.get();
         List<Goods> goods = goodsService.getGoodsByName(goods_name);
         PageInfo<Goods> page = new PageInfo<>(goods);
         m.addAttribute("User",user);
@@ -74,19 +76,4 @@ public class GoodsController {
         return "liebiao";
     }
 
-    @RequestMapping(value = "/search2",method = RequestMethod.GET)
-    public String getGoodsByName2(@RequestParam(value = "goods_name")String goods_name,
-                                  @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
-                                  @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
-                                  HttpSession session,Model m){
-        PageHelper.startPage(pageNum,pageSize);
-        Integer userId = (Integer) session.getAttribute(session.getId());
-        User user = (User) session.getAttribute("user#"+userId);
-        List<Goods> goods = goodsService.getGoodsByName(goods_name);
-        PageInfo<Goods> page = new PageInfo<>(goods);
-
-        m.addAttribute("User",user);
-        m.addAttribute("Goods",page);
-        return "liebiao";
-    }
 }

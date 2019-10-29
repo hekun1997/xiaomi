@@ -1,11 +1,8 @@
 package com.xiaomi.dao;
 
 import com.xiaomi.pojo.Orders;
-import com.xiaomi.tools.TimeTypeHandler;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
 import java.util.List;

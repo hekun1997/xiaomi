@@ -24,7 +24,9 @@
 						type:'get',
 						url:'/user/check/'+username,
 						success:function (result) {
-							if (result != "")alert(result)
+							if (result != ""){
+								alert(result)
+							}
 						},
 						error:function () {
 							alert("查询失败!");
@@ -88,7 +90,7 @@
 					</div>
 				</div>
 				<div class="regist_submit">
-					<input type="hidden" name="_method" value="post">
+					<input type="hidden" name="_method" value="PUT">
 					<input class="submit" type="submit" id="btn_submit" name="submit" value="立即注册" >
 				</div>
 				

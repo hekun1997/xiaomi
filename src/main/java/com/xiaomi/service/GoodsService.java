@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface GoodsService {
+
     List<Goods> getAllGoods();
 
     Goods getGoodsById(Integer id);
@@ -15,5 +16,4 @@ public interface GoodsService {
 
     List<Goods> getGoodsByName(String goods_name);
 
-    Page<Goods> getGoodsByName2(String goods_name);
 }

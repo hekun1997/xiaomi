@@ -14,9 +14,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 
-import javax.servlet.http.HttpSession;
 import java.util.Set;
 
 public class DataBaseRealm extends AuthorizingRealm {
@@ -39,7 +37,6 @@ public class DataBaseRealm extends AuthorizingRealm {
 
         info.setRoles(roles);
         info.setStringPermissions(permissions);
-
         return info;
     }
 
@@ -47,15 +44,16 @@ public class DataBaseRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = authenticationToken.getPrincipal().toString();
         String password = new String((char[])authenticationToken.getCredentials());
-
         User user = null;
         try{
             user = userService.login(username,password);
+
         }catch (Exception e){
             e.printStackTrace();
         }
-        if (null == user) throw new AuthenticationException();
-
-        return new SimpleAuthenticationInfo(username,password,getName());
+        if (null == user) {
+            throw new AuthenticationException();
+        }
+        return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 }

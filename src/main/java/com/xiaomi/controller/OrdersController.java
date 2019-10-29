@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.xiaomi.ServiceImpl.OrdersServiceImpl;
+import com.xiaomi.configuration.web.UserThread;
 import com.xiaomi.dao.GoodsVersionMapper;
 import com.xiaomi.dao.OrdersMapper;
 import com.xiaomi.pojo.Orders;
@@ -34,12 +35,6 @@ public class OrdersController {
     @Autowired
     GoodsVersionService goodsVersionService = null;
 
-    @RequestMapping(value = "",method = RequestMethod.GET)
-    public ModelAndView getAllOrders(){
-        List<Orders> orders = ordersService.getAllOrders();
-        return new ModelAndView("");
-    }
-
     @RequestMapping(value = "/detail/{id}",method = RequestMethod.GET)
     public ModelAndView getOrdersById(@PathVariable("id")Integer id){
         Orders order = ordersService.getOrderById(id);
@@ -48,11 +43,10 @@ public class OrdersController {
 
     @RequestMapping(value = "/{userId}",method = RequestMethod.GET)
     public ModelAndView getOrdersByUserId(@PathVariable("userId")Integer userId, HttpSession session){
+        ModelAndView mv = new ModelAndView("dingdanzhongxin");
         List<Orders> orders = ordersService.getOrderByUserId(userId);
         Integer userId2 = (Integer) session.getAttribute(session.getId());
-        User user = (User) session.getAttribute("user#"+userId2);
-
-        ModelAndView mv = new ModelAndView("dingdanzhongxin");
+        User user = UserThread.get();
         mv.addObject("Orders",orders);
         mv.addObject("User",user);
         return mv;
@@ -86,7 +80,8 @@ public class OrdersController {
     @RequestMapping("/temp/{userId}")
     public ModelAndView tempOrders(@PathVariable("userId") Integer userId,HttpSession session){
         List<Orders> ordersList = ordersService.getTempOrdersByUserId(userId);
-        User user = (User) session.getAttribute("user#"+userId);
+        //User user = (User) session.getAttribute("user#"+userId);
+        User user = UserThread.get();
         ModelAndView mv = new ModelAndView("gouwuche");
         mv.addObject("ordersSize",ordersList.size());
         mv.addObject("ordersList",ordersList);
@@ -107,15 +102,6 @@ public class OrdersController {
         Integer maxCount = goodsVersionService.getVersionById(orders.getGoods_version()).getGoods_count();
         if (count <= maxCount) return -1;
         return maxCount;
-    }
-
-    @RequestMapping("/orderTest")//商品详情页面的测试
-    @ResponseBody
-    public String orderTest(@RequestParam Map<String,Object> params){
-        for (String key : params.keySet()){
-            System.out.println("key : "+key+" -> "+params.get(key));
-        }
-        return "接收成功!";
     }
 
     @RequestMapping("/buy")

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.DependsOn;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-//@Configuration
+@Configuration
 public class ShiroConfig {
 
     @Bean(name = "shiroFilter")
@@ -28,8 +28,10 @@ public class ShiroConfig {
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
         //authc 需要验证 anon
         filterChainDefinitionMap.put("/","anon");
-        filterChainDefinitionMap.put("/static/**","anon");
-        filterChainDefinitionMap.put("/user/**","authc");
+        filterChainDefinitionMap.put("/js/**","anon");
+        filterChainDefinitionMap.put("/css/**","anon");
+        filterChainDefinitionMap.put("/image/**","anon");
+        //filterChainDefinitionMap.put("/user/**","authc");
         filterChainDefinitionMap.put("/orders/**","authc");
 
         //filterChainDefinitionMap.put("/**","authc");

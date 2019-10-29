@@ -3,6 +3,9 @@ package com.xiaomi.pojo;
 import java.io.Serializable;
 
 public class User implements Serializable {
+
+    private static final long serialVersionUID = -5809782578272943999L;
+
     private Integer id;
     private String username;
     private String password;
@@ -14,6 +17,22 @@ public class User implements Serializable {
     public User() {
     }
 
+    /**
+     * 用于储存登录信息
+     * @param id
+     * @param username
+     */
+    public User(Integer id, String username) {
+        this.id = id;
+        this.username = username;
+    }
+
+    /**
+     * 用于注册时使用
+     * @param username
+     * @param password
+     * @param tel
+     */
     public User(String username, String password, String tel) {
         this.username = username;
         this.password = password;

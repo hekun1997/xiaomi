@@ -23,7 +23,7 @@ public interface UserMapper {
     int register(User user);
 
     @UpdateProvider(type = UserMapperProvider.class,method = "UpdateUser")
-    int UpdateUser(User user);
+    int updateUser(User user);
 
     @Select("select * from user")
     Page<User> getUserList();

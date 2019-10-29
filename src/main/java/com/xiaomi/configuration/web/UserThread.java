@@ -2,6 +2,9 @@ package com.xiaomi.configuration.web;
 
 import com.xiaomi.pojo.User;
 
+/**
+ * 使用ThreadLocal保存用户信息
+ */
 public class UserThread {
     private static ThreadLocal<User> local = new ThreadLocal<>();
 

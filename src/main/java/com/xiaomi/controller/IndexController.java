@@ -42,7 +42,8 @@ public class IndexController {
     public ModelAndView index(HttpSession session){
         List<Type> types = typeService.getTypeForIndex();
         Integer userId = (Integer) session.getAttribute(session.getId());
-        User user = (User) session.getAttribute("user#"+userId);
+        //User user = (User) session.getAttribute("user#"+userId);
+        User user = (User) UserThread.get();
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("Types",types);
         mv.addObject("User",user);
@@ -51,26 +52,12 @@ public class IndexController {
 
     @RequestMapping(value = "/verification",method = RequestMethod.POST)
     @ResponseBody
-    public boolean tytest(@RequestParam("check") String check,HttpSession session){
+    public boolean verification(@RequestParam("check") String check,HttpSession session){
         String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
         if (!check.equalsIgnoreCase(vrifyCode)) {
             return false;
         }
         return true;
-    }
-
-    @RequestMapping("/pageHelper")
-    @ResponseBody
-    public Object pageHelper(Integer pageNum,Integer pageSize){
-        PageHelper.startPage(pageNum,pageSize);
-        Page<Goods> page = goodsMapper.getGoodsByName2("小米");
-        return page;
-    }
-
-    @RequestMapping("/test")
-    public String test(){
-        System.out.println("最后的测试方法 "+UserThread.get());
-        return "";
     }
 
     /**

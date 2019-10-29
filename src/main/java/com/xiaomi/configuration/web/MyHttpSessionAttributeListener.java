@@ -11,7 +11,6 @@ public class MyHttpSessionAttributeListener implements HttpSessionAttributeListe
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {
         if ("userInfo".equals(se.getName())){
-            System.out.println("User 添加 : " + se.getValue().toString());
             UserThread.set((User) se.getValue());
         }
     }
