@@ -4,15 +4,18 @@ import com.xiaomi.dao.UserMapper;
 import com.xiaomi.pojo.User;
 import com.xiaomi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+@CacheConfig(cacheNames = "users",cacheManager = "cacheManager")
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserMapper userMapper = null;
+    UserMapper userMapper;
 
-    @Cacheable(value = "user",key = "#username",unless = "#result eq null ")
+    @Cacheable(key = "#username")
     @Override
     public User login(String username, String password) {
         return userMapper.login(username,password);
@@ -33,6 +36,7 @@ public class UserServiceImpl implements UserService {
         return userMapper.register(user);
     }
 
+    @CacheEvict(key = "#user.username")
     @Override
     public int updateUser(User user) {
         return userMapper.updateUser(user);
