@@ -36,8 +36,6 @@ public class GoodsController {
     public ModelAndView getGoodsDetail(@PathVariable Integer id, HttpSession session){
         ModelAndView mv = new ModelAndView("xiangqing");
         Goods goods = goodsService.getGoodsById(id);
-        //Integer userId = (Integer) session.getAttribute(session.getId());
-        //User user = (User) session.getAttribute("user#"+userId);
         User user = UserThread.get();
         mv.addObject("User",user);
         mv.addObject("goods",goods);
@@ -48,12 +46,17 @@ public class GoodsController {
     }
 
     @RequestMapping("/type/{id}")
-    public String goods(@PathVariable("id")Integer id, Model m, HttpSession session){
+    public String goods(@PathVariable("id")Integer id,
+                        @RequestParam(value = "pageNum",defaultValue = "1") Integer pageNum,
+                        @RequestParam(value = "pageSize",defaultValue = "5") Integer pageSize,
+                        Model m, HttpSession session){
+        PageHelper.startPage(pageNum,pageSize);
         Type type = typeService.getTypeById(id);
         List<Goods> goods = goodsService.getGoodsByTypeId(id);
         User user = UserThread.get();
+        PageInfo<Goods> page = new PageInfo<>(goods);
         m.addAttribute("User",user);
-        m.addAttribute("Goods",goods);
+        m.addAttribute("Goods",page);
         m.addAttribute("Type",type);
 
         return "liebiao";

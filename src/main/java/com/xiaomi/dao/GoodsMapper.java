@@ -28,7 +28,6 @@ public interface GoodsMapper {
     })
     Goods getGoodsById(@Param("id") Integer id);
 
-    @Cacheable(key = "'getGoodsByTypeId'")
     @Select("select * from goods where type_id =#{type_id}")
     @Results(value = {
             @Result(id = true,column = "id",property = "id"),
