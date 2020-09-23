@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class GoodsVersion implements Serializable {
     private static final long serialVersionUID = 3606068549749372703L;
-    private Integer version_id;
-    private Integer goods_id;
-    private BigDecimal goods_price;
-    private Integer goods_count;
-    private String goods_detail;
+    private Integer versionId;
+    private Integer goodsId;
+    private BigDecimal goodsPrice;
+    private Integer goodsCount;
+    private String goodsDetail;
     private Integer status;
 }

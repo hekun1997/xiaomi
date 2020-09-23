@@ -13,14 +13,14 @@ import java.util.List;
 public interface TypeMapper {
     @Select("select * from type")
     List<Type> getAllType();
-    @Select("select * from type where type_id = #{id}")
+    @Select("select * from type where typeId = #{id}")
     Type getTypeById(@Param("id")Integer id);
 
-    @Select("SELECT * FROM `type` where type_id in(3,4,5,6,7,9,10,11,12)")
+    @Select("SELECT * FROM `type` where typeId in(3,4,5,6,7,9,10,11,12)")
     @Results(value = {
-            @Result(id = true,column = "type_id",property = "type_id"),
-            @Result(column = "goods_type",property = "goods_type"),
-            @Result(column = "type_id",property = "goodsList",
+            @Result(id = true,column = "typeId",property = "typeId"),
+            @Result(column = "goodsType",property = "goodsType"),
+            @Result(column = "typeId",property = "goodsList",
                     many = @Many(select = "com.xiaomi.dao.GoodsMapper.getGoodsByTypeId",fetchType = FetchType.EAGER))
     })
     List<Type> getTypeForIndex();

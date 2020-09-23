@@ -16,8 +16,8 @@ import java.util.List;
 public class Type implements Serializable {
     private static final long serialVersionUID = -102892800711278219L;
 
-    private Integer type_id;
-    private String goods_type;
+    private Integer typeId;
+    private String goodsType;
 
     private List<Goods> goodsList;
 }

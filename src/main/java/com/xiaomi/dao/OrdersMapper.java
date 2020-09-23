@@ -18,39 +18,39 @@ public interface OrdersMapper {
     @Select("select * from orders where id = #{id}")
     @Results({
             @Result(id = true, column = "id", property = "id"),
-            @Result(column = "trading_flow", property = "trading_flow"),
-            @Result(column = "goods_id", property = "goods_id"),
-            @Result(column = "goods_version", property = "goods_version"),
-            @Result(column = "goods_color_id", property = "goods_color_id"),
-            @Result(column = "user_id", property = "user_id"),
+            @Result(column = "tradingFlow", property = "tradingFlow"),
+            @Result(column = "goodsId", property = "goodsId"),
+            @Result(column = "goodsVersion", property = "goodsVersion"),
+            @Result(column = "goodsColorId", property = "goodsColorId"),
+            @Result(column = "userId", property = "userId"),
             @Result(column = "time", property = "time"),
-            @Result(column = "goods_count", property = "goods_count"),
-            @Result(column = "goods_price", property = "goods_price"),
+            @Result(column = "goodsCount", property = "goodsCount"),
+            @Result(column = "goodsPrice", property = "goodsPrice"),
             @Result(column = "note", property = "note"),
             @Result(column = "status", property = "status"),
-            @Result(column = "goods_version", property = "goodsVersion",
+            @Result(column = "goodsVersion", property = "goodsVersion",
                     one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getVersionById", fetchType = FetchType.EAGER))
     })
     Orders getOrderById(@Param("id")Integer id);
 
-    @Select("select * from orders where user_id = #{user_id}")
+    @Select("select * from orders where userId = #{userId}")
     @Results({
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "trading_flow",property = "trading_flow"),
-            @Result(column = "goods_id",property = "goods_id"),
-            @Result(column = "goods_version",property = "goods_version"),
-            @Result(column = "goods_color_id",property = "goods_color_id"),
-            @Result(column = "user_id",property = "user_id"),
+            @Result(column = "tradingFlow",property = "tradingFlow"),
+            @Result(column = "goodsId",property = "goodsId"),
+            @Result(column = "goodsVersion",property = "goodsVersion"),
+            @Result(column = "goodsColorId",property = "goodsColorId"),
+            @Result(column = "userId",property = "userId"),
             @Result(column = "time",property = "time"),
-            @Result(column = "goods_count",property = "goods_count"),
-            @Result(column = "goods_price",property = "goods_price"),
+            @Result(column = "goodsCount",property = "goodsCount"),
+            @Result(column = "goodsPrice",property = "goodsPrice"),
             @Result(column = "note",property = "note"),
             @Result(column = "status",property = "status"),
-            @Result(column = "goods_id",property = "goods",
+            @Result(column = "goodsId",property = "goods",
                     one = @One(select = "com.xiaomi.dao.GoodsMapper.getGoodsById",fetchType = FetchType.EAGER))
 
     })
-    List<Orders> getOrderByUserId(@Param("user_id")Integer userId);
+    List<Orders> getOrderByUserId(@Param("userId")Integer userId);
 
     @Delete("delete orders from where id =#{id}")
     Integer delOrdersById(@Param("id")Integer id);
@@ -58,34 +58,33 @@ public interface OrdersMapper {
     @Update("update orders set where id = #{id}")
     Integer updateOrdersById(@Param("id")Integer id);
 
-    @Insert("insert into orders (goods_id, goods_version, goods_color_id, user_id, time,trading_flow,goods_count,goods_price,note,status) " +
-            "values (#{goods_id},#{goods_version},#{goods_color_id},#{user_id},#{time},#{trading_flow},#{goods_count},#{goods_price},#{note},#{status})")
+    @Insert("insert into orders (goodsId, goodsVersion, goodsColorId, userId, time,tradingFlow,goodsCount,goodsPrice,note,status) " +
+            "values (#{goodsId},#{goodsVersion},#{goodsColorId},#{userId},#{time},#{tradingFlow},#{goodsCount},#{goodsPrice},#{note},#{status})")
     Integer postOrders(Orders orders);
 
-    @Select("select * from orders where status = 0 and user_id = #{user_id}")
+    @Select("select * from orders where status = 0 and userId = #{userId}")
     @Results({
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "trading_flow",property = "trading_flow"),
-            @Result(column = "goods_id",property = "goods_id"),
-            @Result(column = "goods_version",property = "goods_version"),
-            @Result(column = "goods_color_id",property = "goods_color_id"),
-            @Result(column = "user_id",property = "user_id"),
+            @Result(column = "tradingFlow",property = "tradingFlow"),
+            @Result(column = "goodsId",property = "goodsId"),
+            @Result(column = "goodsVersion",property = "goodsVersion"),
+            @Result(column = "goodsColorId",property = "goodsColorId"),
+            @Result(column = "userId",property = "userId"),
             @Result(column = "time",property = "time"),
-            @Result(column = "goods_count",property = "goods_count"),
-            @Result(column = "goods_price",property = "goods_price"),
+            @Result(column = "goodsCount",property = "goodsCount"),
+            @Result(column = "goodsPrice",property = "goodsPrice"),
             @Result(column = "note",property = "note"),
             @Result(column = "status",property = "status"),
-            @Result(column = "goods_id",property = "goods",
+            @Result(column = "goodsId",property = "goods",
                     one = @One(select = "com.xiaomi.dao.GoodsMapper.getGoodsById",fetchType = FetchType.EAGER)),
-            @Result(column = "goods_version",property = "goodsVersion",
+            @Result(column = "goodsVersion",property = "goodsVersion",
                     one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getVersionById",fetchType = FetchType.EAGER)),
-            @Result(column = "goods_color_id",property = "color",
+            @Result(column = "goodsColorId",property = "color",
             one = @One(select = "com.xiaomi.dao.ColorMapper.getColorsById",fetchType = FetchType.EAGER))
 
     })
-    List<Orders> getTempOrdersByUserId(@Param("user_id")Integer userId);
-
-    //购买时调用的sql语句
-    @Update("update orders set goods_count=#{goods_count},goods_price=#{goods_price},status='1' where id =#{id}")
-    Integer buyTempOrdersById(@Param("id")Integer id, @Param("goods_count") Integer goods_count, @Param("goods_price")BigDecimal goods_price);
+    List<Orders> getTempOrdersByUserId(@Param("userId")Integer userId);
+    
+    @Update("update orders set goodsCount=#{goodsCount},goodsPrice=#{goodsPrice},status='1' where id =#{id}")
+    Integer buyTempOrdersById(@Param("id")Integer id, @Param("goodsCount") Integer goodsCount, @Param("goodsPrice")BigDecimal goodsPrice);
 }

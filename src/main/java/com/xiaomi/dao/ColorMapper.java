@@ -12,9 +12,9 @@ import java.util.List;
  */
 @Mapper
 public interface ColorMapper {
-    @Select("select * from color where goods_id =#{goods_id}")
-    List<Color> getColorsByGoodsId(@Param("goods_id")Integer goods_id);
+    @Select("select * from color where goodsId =#{goodsId}")
+    List<Color> getColorsByGoodsId(@Param("goodsId")Integer goodsId);
 
-    @Select("select * from color where color_id =#{color_id}")
-    Color getColorsById(@Param("color_id")Integer color_id);
+    @Select("select * from color where colorId =#{colorId}")
+    Color getColorsById(@Param("colorId")Integer colorId);
 }

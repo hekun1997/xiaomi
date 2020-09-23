@@ -13,15 +13,15 @@ import java.util.List;
  */
 @Mapper
 public interface GoodsVersionMapper {
-    @Select("select * from goods_version where goods_id = #{goods_id}")
-    List<GoodsVersion> getVersionByGoodsId(@Param("goods_id")Integer goods_id);
+    @Select("select * from goods_version where goodsId = #{goodsId}")
+    List<GoodsVersion> getVersionByGoodsId(@Param("goodsId")Integer goodsId);
 
-    @Select("select MIN(goods_price) as goods_price from goods_version where goods_id = #{goods_id}")
-    GoodsVersion getLowestVersionByGoodsSId(@Param("goods_id")Integer goods_id);
+    @Select("select MIN(goods_price) as goods_price from goods_version where goodsId = #{goodsId}")
+    GoodsVersion getLowestVersionByGoodsSId(@Param("goodsId")Integer goodsId);
 
-    @Select("select * from goods_version where version_id = #{version_id}")
-    GoodsVersion getVersionById(@Param("version_id")Integer version_id);
+    @Select("select * from goods_version where versionId = #{versionId}")
+    GoodsVersion getVersionById(@Param("versionId")Integer versionId);
 
-    @Update("update goods_version set goods_count = #{goods_count} where version_id = #{version_id}")
-    Integer updateVersionById(@Param("version_id") Integer version_id,@Param("goods_count")Integer goods_count);
+    @Update("update goods_version set goods_count = #{goods_count} where versionId = #{versionId}")
+    Integer updateVersionById(@Param("versionId") Integer versionId,@Param("goods_count")Integer goods_count);
 }

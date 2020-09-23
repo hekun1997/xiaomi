@@ -14,9 +14,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Evaluation implements Serializable {
     private static final long serialVersionUID = -7776698202322763502L;
-    private Integer evaluation_id;
-    private Integer user_id;
-    private Integer goods_id;
-    private String evaluation_detail;
-    private Integer evaluation_star;
+    private Integer evaluationId;
+    private Integer userId;
+    private Integer goodsId;
+    private String evaluationDetail;
+    private Integer evaluationStar;
 }

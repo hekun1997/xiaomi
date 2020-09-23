@@ -144,7 +144,7 @@
 	<form action="post" method="">
 		<div class="xiangqing">
 			<div class="neirong w">
-				<div class="xiaomi6 fl"><span th:text="${goods.goods_name}"></span></div>
+				<div class="xiaomi6 fl"><span th:text="${goods.goodsName}"></span></div>
 				<nav class="fr">
 					<li><a href="">概述</a></li>
 					<li>|</li>
@@ -164,19 +164,19 @@
 		</div>
 		<input type="hidden" id="goods_id" name="goods_id" th:value="${goods.id}">
 		<div class="jieshao mt20 w">
-			<div class="left fl"><img th:src="${image.middel_src}"></div>
+			<div class="left fl"><img th:src="${image.middelSrc}"></div>
 			<div class="right fr">
-				<div class="h3 ml20 mt20"><span th:text="${goods.goods_name}"></span></div>
-				<div class="jianjie mr40 ml20 mt10"><span th:text="${goods.goods_description}"></span></div>
+				<div class="h3 ml20 mt20"><span th:text="${goods.goodsName}"></span></div>
+				<div class="jianjie mr40 ml20 mt10"><span th:text="${goods.goodsDescription}"></span></div>
 <!--				<div class="jiage ml20 mt10"><span th:text="${goods.goodsDetail.goods_price}"></span></div>-->
 				<div class="ft20 ml20 mt20">选择版本</div>
 				<div class="xzbb ml20 mt10">
 					<div class="banben fl" th:each="version : ${goods_version}">
-						<a th:id="${version.version_id}" class="goods_version">
-							<input type="hidden" th:id="'version_goods_detail_'+${version.version_id}" th:value="${version.goods_detail}">
-							<input type="hidden" th:id="'version_goods_price_'+${version.version_id}" th:value="${version.goods_price}">
-							<span th:text="${version.goods_detail}"></span>
-							<span th:text="${version.goods_price}"></span>
+						<a th:id="${version.getVersionId()}" class="goods_version">
+							<input type="hidden" th:id="'version_goods_detail_'+${version.versionId}" th:value="${version.goodsDetail}">
+							<input type="hidden" th:id="'version_goods_price_'+${version.version_id}" th:value="${version.goodsPrice}">
+							<span th:text="${version.goodsDetail}"></span>
+							<span th:text="${version.goodsPrice}"></span>
 						</a>
 					</div>
 					<div class="clear"></div>

@@ -1,10 +1,7 @@
 package com.xiaomi.dao;
 
-import com.github.pagehelper.Page;
 import com.xiaomi.pojo.User;
 import org.apache.ibatis.annotations.*;
-
-import java.util.List;
 
 /**
  * @author hekun

@@ -12,9 +12,9 @@ import java.util.List;
  */
 @Mapper
 public interface ImageMapper {
-    @Select("select * from goods_image")
+    @Select("select * from goodsImage")
     List<GoodsImage> getAllImage();
 
-    @Select("select * from goods_image where goods_id = #{goods_id}")
-    GoodsImage getImageByGoodsId(@Param("goods_id")Integer goods_id);
+    @Select("select * from goodsImage where goodsId = #{goodsId}")
+    GoodsImage getImageByGoodsId(@Param("goodsId")Integer goodsId);
 }

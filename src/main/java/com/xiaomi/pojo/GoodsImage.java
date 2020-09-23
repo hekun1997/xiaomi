@@ -15,8 +15,8 @@ import java.io.Serializable;
 public class GoodsImage implements Serializable {
     private static final long serialVersionUID = -7855981250527070515L;
     private Integer id;
-    private Integer goods_id;
-    private String small_src;
-    private String middel_src;
-    private String large_src;
+    private Integer goodsId;
+    private String smallSrc;
+    private String middelSrc;
+    private String largeSrc;
 }

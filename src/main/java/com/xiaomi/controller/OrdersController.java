@@ -93,14 +93,10 @@ public class OrdersController {
     @RequestMapping("/check")
     @ResponseBody
     public Integer checkOrders(@RequestParam Map<String,Object> params){
-        //orderId count
         Integer orderId = Integer.valueOf((String)params.get("orderId"));
         Integer count = Integer.valueOf((String)params.get("count"));
-        System.out.println(orderId);
-        System.out.println(count);
         Orders orders = ordersService.getOrderById(orderId);
-        System.out.println(orders.getGoods_version());
-        Integer maxCount = goodsVersionService.getVersionById(orders.getGoods_version()).getGoods_count();
+        Integer maxCount = goodsVersionService.getVersionById(orders.getVersion()).getGoodsCount();
         if (count <= maxCount) {
             return -1;
         }
@@ -134,7 +130,7 @@ public class OrdersController {
             goodsCount += ordersBody.getCount();
             Orders orders = ordersService.getOrderById(ordersBody.getOrdersId());
             userId = orders.getId();
-            BigDecimal tempPrice = new BigDecimal(ordersBody.getCount()).multiply(orders.getGoodsVersion().getGoods_price());
+            BigDecimal tempPrice = new BigDecimal(ordersBody.getCount()).multiply(orders.getGoodsVersion().getGoodsPrice());
             price = price.add(tempPrice);
             ordersService.updateOrdersByIdAndGoodsCount(ordersBody.getOrdersId(),ordersBody.getCount());
         }

@@ -22,13 +22,13 @@ public class Orders implements Serializable {
      * //18位交易流水号
      */
     private String trading_flow;
-    private Integer goods_id;
-    private Integer goods_version;
-    private Integer goods_color_id;
-    private Integer user_id;
+    private Integer goodsId;
+    private Integer version;
+    private Integer goodsColorId;
+    private Integer userId;
     private Timestamp time;
-    private Integer goods_count;
-    private BigDecimal goods_price;
+    private Integer goodsCount;
+    private BigDecimal goodsPrice;
     private String note;
     /**
      * 0为未购买 ,1为已购买
@@ -41,29 +41,29 @@ public class Orders implements Serializable {
 
     private Color color;
 
-    public Orders(String trading_flow, Integer goods_id, Integer goods_version, Integer goods_color_id, Integer user_id, Timestamp time, Integer goods_count, BigDecimal goods_price, String note, Integer status) {
+    public Orders(String trading_flow, Integer goodsId, Integer version, Integer goodsColorId, Integer userId, Timestamp time, Integer goodsCount, BigDecimal goodsPrice, String note, Integer status) {
         this.trading_flow = trading_flow;
-        this.goods_id = goods_id;
-        this.goods_version = goods_version;
-        this.goods_color_id = goods_color_id;
-        this.user_id = user_id;
+        this.goodsId = goodsId;
+        this.version = version;
+        this.goodsColorId = goodsColorId;
+        this.userId = userId;
         this.time = time;
-        this.goods_count = goods_count;
-        this.goods_price = goods_price;
+        this.goodsCount = goodsCount;
+        this.goodsPrice = goodsPrice;
         this.note = note;
         this.status = status;
     }
 
-    public Orders(Integer id, String trading_flow, Integer goods_id, Integer goods_version, Integer goods_color_id, Integer user_id, Timestamp time, Integer goods_count, BigDecimal goods_price, String note, Integer status, Goods goods) {
+    public Orders(Integer id, String trading_flow, Integer goodsId, Integer version, Integer goodsColorId, Integer userId, Timestamp time, Integer goodsCount, BigDecimal goodsPrice, String note, Integer status, Goods goods) {
         this.id = id;
         this.trading_flow = trading_flow;
-        this.goods_id = goods_id;
-        this.goods_version = goods_version;
-        this.goods_color_id = goods_color_id;
-        this.user_id = user_id;
+        this.goodsId = goodsId;
+        this.version = version;
+        this.goodsColorId = goodsColorId;
+        this.userId = userId;
         this.time = time;
-        this.goods_count = goods_count;
-        this.goods_price = goods_price;
+        this.goodsCount = goodsCount;
+        this.goodsPrice = goodsPrice;
         this.note = note;
         this.status = status;
         this.goods = goods;

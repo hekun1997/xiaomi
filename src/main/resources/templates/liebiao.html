@@ -7,13 +7,6 @@
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
 		<script src="https://how2j.cn/study/jquery.min.js"></script>
 		<script type="text/javascript">
-			// $(document).ready(function () {
-			// 	var local_url = window.location.href;
-			// 	$('#start_page').attr('href',local_url);
-			// 	$('#last_page').attr('href',local_url);
-			// 	$('#next_page').attr('href',local_url+'&pageNum=');
-			// 	$('#end_page').attr('href',local_url);
-			// })
 		</script>
 		<style>
 			#page{
@@ -65,9 +58,7 @@
 				<div class="clear"></div>
 			</div>
 		</header>
-	<!--end header -->
 
-<!-- start banner_x -->
 		<div class="banner_x center">
 			<a href="./index.html" target="_blank"><div class="logo fl"></div></a>
 			<a href=""><div class="ad_top fl"></div></a>
@@ -106,13 +97,13 @@
 		<div class="danpin center">
 			
 			<div class="biaoti center" th:if="${Type}">
-				<span th:text="${Type.goods_type}"></span>
+				<span th:text="${Type.getGoodsType()}"></span>
 			</div>
 			<div class="main center">
 				<div th:each="goods : ${Goods.list}" class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-					<div class="sub_mingxing"><a th:href="'/goods/'+${goods.id}" target="_blank"><img th:src="${goods.goodsImage.large_src}" alt=""></a></div>
-					<div class="pinpai"><a href="#" target="_blank"><span th:text="${goods.goods_name}"></span></a></div>
-					<div class="youhui"><span th:text="${goods.goods_description}"></span></div>
+					<div class="sub_mingxing"><a th:href="'/goods/'+${goods.getId()}" target="_blank"><img th:src="${goods.goodsImage.large_src}" alt=""></a></div>
+					<div class="pinpai"><a href="#" target="_blank"><span th:text="${goods.goodsName}"></span></a></div>
+					<div class="youhui"><span th:text="${goods.goodsDescription}"></span></div>
 					<div class="jiage"><span th:text="${goods.lowestGoodsVersion.goods_price}"></span></div>
 				</div>
 

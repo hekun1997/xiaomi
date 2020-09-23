@@ -9,13 +9,13 @@
 </head>
 <body>
 <p th:text="'id '+${order.id}"></p>
-<p th:text="'id '+${order.goods_id}"></p>
-<p th:text="'user_id '+${order.user_id}"></p>
+<p th:text="'id '+${order.getGoodsId()}"></p>
+<p th:text="'user_id '+${order.getUserId()}"></p>
 <p th:text="'time '+${order.time}"></p>
 <p th:text="'trading_flow '+${order.trading_flow}"></p>
 <p th:text="'note '+${order.note}"></p>
 <p th:text="'status '+${order.status}"></p>
-<p th:text="'goods_count '+${order.goods_count}"></p>
-<p th:text="'goods_price '+${order.goods_price}"></p>
+<p th:text="'goods_count '+${order.getGoodsCount()}"></p>
+<p th:text="'goods_price '+${order.getGoodsPrice()}"></p>
 </body>
 </html>

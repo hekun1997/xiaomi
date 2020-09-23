@@ -14,8 +14,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Color implements Serializable {
     private static final long serialVersionUID = -9118123792094348087L;
-    private Integer color_id;
-    private Integer goods_id;
-    private String color_name;
+    private Integer colorId;
+    private Integer goodsId;
+    private String colorName;
     private String rgb;
 }

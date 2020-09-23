@@ -17,9 +17,9 @@ public interface GoodsMapper {
     @Select("select * from goods where id = #{id}")
     @Results({
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "goods_name",property = "goods_name"),
-            @Result(column = "goods_description",property = "goods_description"),
-            @Result(column = "type_id",property = "type_id"),
+            @Result(column = "goodsName",property = "goodsName"),
+            @Result(column = "goodsDescription",property = "goodsDescription"),
+            @Result(column = "typeId",property = "typeId"),
             @Result(column = "id",property = "goodsImage",
                     one = @One(select = "com.xiaomi.dao.ImageMapper.getImageByGoodsId",fetchType = FetchType.LAZY)),
             @Result(column = "id",property = "goodsVersion",
@@ -29,30 +29,30 @@ public interface GoodsMapper {
     })
     Goods getGoodsById(@Param("id") Integer id);
 
-    @Select("select * from goods where type_id =#{type_id}")
+    @Select("select * from goods where typeId =#{typeId}")
     @Results(value = {
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "goods_name",property = "goods_name"),
-            @Result(column = "goods_description",property = "goods_description"),
-            @Result(column = "type_id",property = "type_id"),
+            @Result(column = "goodsName",property = "goodsName"),
+            @Result(column = "goodsDescription",property = "goodsDescription"),
+            @Result(column = "typeId",property = "typeId"),
             @Result(column = "id",property = "goodsImage",
                     one = @One(select = "com.xiaomi.dao.ImageMapper.getImageByGoodsId",fetchType = FetchType.EAGER)),
             @Result(column = "id",property = "lowestGoodsVersion",
                     one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getLowestVersionByGoodsSId",fetchType = FetchType.EAGER)),
     })
-    List<Goods> getGoodsByTypeId(@Param("type_id")Integer type_id);
+    List<Goods> getGoodsByTypeId(@Param("typeId")Integer typeId);
 
-    @Select("select * from goods where goods_name like concat('%',#{goods_name},'%')")
+    @Select("select * from goods where goodsName like concat('%',#{goodsName},'%')")
     @Results(value = {
             @Result(id = true,column = "id",property = "id"),
-            @Result(column = "goods_name",property = "goods_name"),
-            @Result(column = "goods_description",property = "goods_description"),
-            @Result(column = "type_id",property = "type_id"),
+            @Result(column = "goodsName",property = "goodsName"),
+            @Result(column = "goodsDescription",property = "goodsDescription"),
+            @Result(column = "typeId",property = "typeId"),
             @Result(column = "id",property = "goodsImage",
                     one = @One(select = "com.xiaomi.dao.ImageMapper.getImageByGoodsId",fetchType = FetchType.EAGER)),
             @Result(column = "id",property = "lowestGoodsVersion",
                     one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getLowestVersionByGoodsSId",fetchType = FetchType.EAGER)),
     })
-    List<Goods> getGoodsByName(@Param("goods_name")String goods_name);
+    List<Goods> getGoodsByName(@Param("goodsName")String goodsName);
 
 }

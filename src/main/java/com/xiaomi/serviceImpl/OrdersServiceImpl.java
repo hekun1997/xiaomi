@@ -80,13 +80,12 @@ public class OrdersServiceImpl implements OrdersService {
     @Override
     public Integer updateOrdersByIdAndGoodsCount(Integer id, Integer count) {
         Orders orders = ordersMapper.getOrderById(id);
-        GoodsVersion goodsVersion = goodsVersionService.getVersionById(orders.getGoods_version());
-        if(count <= goodsVersion.getGoods_count()){
-            Integer newGoodsCount = goodsVersion.getGoods_count() - count;
-            goodsVersionService.updateVersionById(goodsVersion.getVersion_id(),newGoodsCount);
-            BigDecimal singlePrice = goodsVersion.getGoods_price();
+        GoodsVersion goodsVersion = goodsVersionService.getVersionById(orders.getVersion());
+        if(count <= goodsVersion.getGoodsCount()){
+            Integer newGoodsCount = goodsVersion.getGoodsCount() - count;
+            goodsVersionService.updateVersionById(goodsVersion.getVersionId(),newGoodsCount);
+            BigDecimal singlePrice = goodsVersion.getGoodsPrice();
 
-            //goodsVersion.getGoods_price() * BigDecimal.valueOf((long)count);
             BigDecimal resultPrice = singlePrice.multiply(new BigDecimal(count.doubleValue()));
             ordersMapper.buyTempOrdersById(orders.getId(),count,resultPrice);
         }
