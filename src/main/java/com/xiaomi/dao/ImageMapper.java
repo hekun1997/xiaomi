@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface ImageMapper {
     @Select("select * from goods_image")

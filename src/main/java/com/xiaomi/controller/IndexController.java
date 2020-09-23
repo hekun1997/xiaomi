@@ -2,11 +2,9 @@ package com.xiaomi.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xiaomi.configuration.web.UserThread;
-import com.xiaomi.dao.*;
 import com.xiaomi.pojo.*;
 import com.xiaomi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +18,9 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Controller
 public class IndexController {
     @Autowired

@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface EvaluationMapper {
     @Select("select * from evaluation")

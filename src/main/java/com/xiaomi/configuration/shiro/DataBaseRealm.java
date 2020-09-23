@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
+/**
+ * @author hekun
+ */
 public class DataBaseRealm extends AuthorizingRealm {
 
     @Autowired

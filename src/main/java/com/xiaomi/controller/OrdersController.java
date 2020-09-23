@@ -20,10 +20,13 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author hekun
+ */
 @Controller
 @RequestMapping("/orders")
 public class OrdersController {
@@ -42,7 +45,6 @@ public class OrdersController {
     public ModelAndView getOrdersByUserId(@PathVariable("userId")Integer userId, HttpSession session){
         ModelAndView mv = new ModelAndView("dingdanzhongxin");
         List<Orders> orders = ordersService.getOrderByUserId(userId);
-        Integer userId2 = (Integer) session.getAttribute(session.getId());
         User user = UserThread.get();
         mv.addObject("Orders",orders);
         mv.addObject("User",user);
@@ -59,7 +61,8 @@ public class OrdersController {
     public String postOrders(@RequestParam Map<String,Object> params){
 
         Integer goods_id = Integer.valueOf((String)params.get("goods_id"));
-        Integer user_id = Integer.valueOf((String)params.get("user_id"));//user_id需要通过页面传递过来,ajax传递的user_id值还未增加,
+        //user_id需要通过页面传递过来,ajax传递的user_id值还未增加
+        Integer user_id = Integer.valueOf((String)params.get("user_id"));
         Integer goods_version = Integer.valueOf((String)params.get("goods_version"));
         Integer goods_color_id = Integer.valueOf((String)params.get("color_id"));
         //18位交易流水号
@@ -98,7 +101,9 @@ public class OrdersController {
         Orders orders = ordersService.getOrderById(orderId);
         System.out.println(orders.getGoods_version());
         Integer maxCount = goodsVersionService.getVersionById(orders.getGoods_version()).getGoods_count();
-        if (count <= maxCount) return -1;
+        if (count <= maxCount) {
+            return -1;
+        }
         return maxCount;
     }
 
@@ -108,7 +113,7 @@ public class OrdersController {
         String requestStr = "";
         Integer goodsCount = 0;
         Integer userId = null;
-        BigDecimal price = new BigDecimal(0.0);
+        BigDecimal price = new BigDecimal("0.0");
 
         for (String key : paramsBody.keySet()) {
             requestStr += key;

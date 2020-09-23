@@ -7,6 +7,9 @@ import org.apache.ibatis.mapping.FetchType;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface OrdersMapper {
     @Select("select * from orders")

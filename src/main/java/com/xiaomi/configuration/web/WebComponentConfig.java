@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
+/**
+ * @author hekun
+ */
 @Configuration
 public class WebComponentConfig {
 
@@ -17,6 +20,5 @@ public class WebComponentConfig {
     public HiddenHttpMethodFilter hiddenHttpMethodFilter(){
         return new HiddenHttpMethodFilter();
     }
-
 
 }

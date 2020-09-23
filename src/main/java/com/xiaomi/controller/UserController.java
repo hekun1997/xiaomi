@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author hekun
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {

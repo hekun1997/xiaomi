@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface ColorMapper {
     @Select("select * from color where goods_id =#{goods_id}")

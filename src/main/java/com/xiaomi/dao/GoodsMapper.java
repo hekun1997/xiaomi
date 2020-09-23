@@ -6,6 +6,9 @@ import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface GoodsMapper {
     @Select("select * from goods")

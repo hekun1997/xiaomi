@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface UserMapper {
     @Select("select * from user where username = #{username} and password = #{password}")
@@ -23,10 +26,4 @@ public interface UserMapper {
 
     @UpdateProvider(type = UserMapperProvider.class,method = "UpdateUser")
     int updateUser(User user);
-
-    @Select("select * from user")
-    Page<User> getUserList();
-
-    @Select("select * from user")
-    List<User> getAllUser();
 }

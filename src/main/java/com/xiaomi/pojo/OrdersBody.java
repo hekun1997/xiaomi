@@ -1,32 +1,19 @@
 package com.xiaomi.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+/**
+ * @author hekun
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrdersBody implements Serializable {
+    private static final long serialVersionUID = -7319549840693353577L;
     private Integer ordersId;
     private Integer count;
-
-    public OrdersBody() {
-    }
-
-    public OrdersBody(Integer ordersId, Integer count) {
-        this.ordersId = ordersId;
-        this.count = count;
-    }
-
-    public Integer getOrdersId() {
-        return ordersId;
-    }
-
-    public void setOrdersId(Integer ordersId) {
-        this.ordersId = ordersId;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
-
-    public void setCount(Integer count) {
-        this.count = count;
-    }
 }

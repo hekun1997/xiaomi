@@ -7,6 +7,9 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * @author hekun
+ */
 @WebFilter(filterName = "myFilter",urlPatterns = "/*")
 public class MyFilter implements Filter {
     @Override

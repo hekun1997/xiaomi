@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface GoodsVersionMapper {
     @Select("select * from goods_version where goods_id = #{goods_id}")

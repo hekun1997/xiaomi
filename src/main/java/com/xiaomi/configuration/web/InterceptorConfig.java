@@ -3,6 +3,9 @@ package com.xiaomi.configuration.web;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.*;
 
+/**
+ * @author hekun
+ */
 @Configuration
 public class InterceptorConfig extends WebMvcConfigurationSupport {
 

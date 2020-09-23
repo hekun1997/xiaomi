@@ -6,13 +6,17 @@ import org.apache.ibatis.mapping.FetchType;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @Mapper
 public interface TypeMapper {
     @Select("select * from type")
     List<Type> getAllType();
     @Select("select * from type where type_id = #{id}")
     Type getTypeById(@Param("id")Integer id);
-    @Select("SELECT * FROM `type` where type_id in(3,4,5,6,7,9,10,11,12)")//,4,5,7,8,13,15,16,17,18,19
+
+    @Select("SELECT * FROM `type` where type_id in(3,4,5,6,7,9,10,11,12)")
     @Results(value = {
             @Result(id = true,column = "type_id",property = "type_id"),
             @Result(column = "goods_type",property = "goods_type"),
