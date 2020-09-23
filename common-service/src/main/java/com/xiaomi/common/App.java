@@ -1,4 +1,4 @@
-package com.xiaomi;
+package com.xiaomi.common;
 
 public class App 
 {
