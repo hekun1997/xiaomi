@@ -1,6 +1,7 @@
-package com.xiaomi.dao.shiroMapper;
+package com.xiaomi.user.mapper;
 
-import com.xiaomi.pojo.shiro.Permission;
+
+import com.xiaomi.common.bo.Permission;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;

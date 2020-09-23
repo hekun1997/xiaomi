@@ -1,10 +1,8 @@
-package com.xiaomi.serviceImpl;
+package com.xiaomi.order.service.impl;
 
-import com.xiaomi.dao.OrdersMapper;
-import com.xiaomi.pojo.GoodsVersion;
-import com.xiaomi.pojo.Orders;
-import com.xiaomi.service.GoodsVersionService;
-import com.xiaomi.service.OrdersService;
+import com.xiaomi.common.bo.Orders;
+import com.xiaomi.order.mapper.OrdersMapper;
+import com.xiaomi.order.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;

@@ -1,13 +1,17 @@
-package com.xiaomi.controller;
+package com.xiaomi.user.api;
 
-import com.xiaomi.pojo.User;
-import com.xiaomi.service.UserService;
+import com.xiaomi.common.bo.User;
+import com.xiaomi.user.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -19,7 +23,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/user")
-public class UserController {
+public class UserApiRest {
     @Autowired
     private UserService userService;
 

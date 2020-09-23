@@ -1,24 +1,22 @@
-package com.xiaomi.controller;
+package com.xiaomi.order.api;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.xiaomi.configuration.web.UserThread;
-import com.xiaomi.pojo.Orders;
-import com.xiaomi.pojo.OrdersBody;
-import com.xiaomi.pojo.User;
-import com.xiaomi.service.GoodsVersionService;
-import com.xiaomi.service.OrdersService;
+import com.xiaomi.common.bo.Orders;
+import com.xiaomi.common.bo.User;
+import com.xiaomi.common.tools.TradingFlowUtil;
+import com.xiaomi.order.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +25,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/orders")
-public class OrdersController {
+public class OrderApiRest {
     @Autowired
     OrdersService ordersService = null;
     @Autowired

@@ -1,4 +1,4 @@
-package com.xiaomi.serviceImpl.shiroServiceImpl;
+package com.xiaomi.user.service.impl;
 
 import com.xiaomi.dao.shiroMapper.RoleMapper;
 import com.xiaomi.pojo.shiro.Role;

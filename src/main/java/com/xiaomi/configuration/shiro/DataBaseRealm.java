@@ -1,7 +1,6 @@
 package com.xiaomi.configuration.shiro;
 
 import com.xiaomi.pojo.User;
-import com.xiaomi.service.UserService;
 import com.xiaomi.service.shiroService.PermissionService;
 import com.xiaomi.service.shiroService.RoleService;
 import org.apache.shiro.SecurityUtils;

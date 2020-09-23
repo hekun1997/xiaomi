@@ -1,6 +1,6 @@
-package com.xiaomi.service;
+package com.xiaomi.order.service;
 
-import com.xiaomi.pojo.Orders;
+import com.xiaomi.common.bo.Orders;
 
 import java.util.List;
 
@@ -19,5 +19,5 @@ public interface OrdersService {
 
     List<Orders> getTempOrdersByUserId(Integer userId);
 
-    Integer updateOrdersByIdAndGoodsCount(Integer id,Integer count);
+    Integer updateOrdersByIdAndGoodsCount(Integer id, Integer count);
 }

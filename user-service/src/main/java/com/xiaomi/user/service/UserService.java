@@ -1,9 +1,15 @@
-package com.xiaomi.service;
+package com.xiaomi.user.service;
 
-import com.xiaomi.pojo.User;
+import com.xiaomi.common.bo.User;
 
 public interface UserService {
 
+    /**
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     User login(String username, String password);
 
     Integer checkUsername(String username);

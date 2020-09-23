@@ -1,7 +1,16 @@
-package com.xiaomi.dao;
+package com.xiaomi.order.mapper;
 
-import com.xiaomi.pojo.Orders;
-import org.apache.ibatis.annotations.*;
+
+import com.xiaomi.common.bo.Orders;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.One;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.mapping.FetchType;
 
 import java.math.BigDecimal;
@@ -31,7 +40,7 @@ public interface OrdersMapper {
             @Result(column = "goodsVersion", property = "goodsVersion",
                     one = @One(select = "com.xiaomi.dao.GoodsVersionMapper.getVersionById", fetchType = FetchType.EAGER))
     })
-    Orders getOrderById(@Param("id")Integer id);
+    Orders getOrderById(@Param("id") Integer id);
 
     @Select("select * from orders where userId = #{userId}")
     @Results({
@@ -50,13 +59,13 @@ public interface OrdersMapper {
                     one = @One(select = "com.xiaomi.dao.GoodsMapper.getGoodsById",fetchType = FetchType.EAGER))
 
     })
-    List<Orders> getOrderByUserId(@Param("userId")Integer userId);
+    List<Orders> getOrderByUserId(@Param("userId") Integer userId);
 
     @Delete("delete orders from where id =#{id}")
-    Integer delOrdersById(@Param("id")Integer id);
+    Integer delOrdersById(@Param("id") Integer id);
 
     @Update("update orders set where id = #{id}")
-    Integer updateOrdersById(@Param("id")Integer id);
+    Integer updateOrdersById(@Param("id") Integer id);
 
     @Insert("insert into orders (goodsId, goodsVersion, goodsColorId, userId, time,tradingFlow,goodsCount,goodsPrice,note,status) " +
             "values (#{goodsId},#{goodsVersion},#{goodsColorId},#{userId},#{time},#{tradingFlow},#{goodsCount},#{goodsPrice},#{note},#{status})")
@@ -83,8 +92,8 @@ public interface OrdersMapper {
             one = @One(select = "com.xiaomi.dao.ColorMapper.getColorsById",fetchType = FetchType.EAGER))
 
     })
-    List<Orders> getTempOrdersByUserId(@Param("userId")Integer userId);
-    
+    List<Orders> getTempOrdersByUserId(@Param("userId") Integer userId);
+
     @Update("update orders set goodsCount=#{goodsCount},goodsPrice=#{goodsPrice},status='1' where id =#{id}")
-    Integer buyTempOrdersById(@Param("id")Integer id, @Param("goodsCount") Integer goodsCount, @Param("goodsPrice")BigDecimal goodsPrice);
+    Integer buyTempOrdersById(@Param("id") Integer id, @Param("goodsCount") Integer goodsCount, @Param("goodsPrice") BigDecimal goodsPrice);
 }

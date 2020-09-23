@@ -1,8 +1,8 @@
-package com.xiaomi.serviceImpl;
+package com.xiaomi.user.service.impl;
 
-import com.xiaomi.dao.UserMapper;
-import com.xiaomi.pojo.User;
-import com.xiaomi.service.UserService;
+import com.xiaomi.common.bo.User;
+import com.xiaomi.user.mapper.UserMapper;
+import com.xiaomi.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
