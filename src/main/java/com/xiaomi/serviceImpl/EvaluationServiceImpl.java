@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
 import com.xiaomi.dao.EvaluationMapper;
 import com.xiaomi.pojo.Evaluation;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class EvaluationServiceImpl implements EvaluationService {
     @Autowired
-    EvaluationMapper evaluationMapper;
+    private EvaluationMapper evaluationMapper;
 
     @Cacheable(key = "'getAllEvaluation'")
     @Override

@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl.shiroServiceImpl;
+package com.xiaomi.serviceImpl.shiroServiceImpl;
 
 import com.xiaomi.dao.shiroMapper.PermissionMapper;
 import com.xiaomi.pojo.shiro.Permission;

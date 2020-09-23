@@ -6,10 +6,13 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
-//@Configuration
+/**
+ * @author hekun
+ */
+@Configuration
 public class PageHelperConfig {
 
-   // @Bean
+    @Bean
     public PageHelper pageHelper(){
         PageHelper pageHelper = new PageHelper();
         Properties p = new Properties();

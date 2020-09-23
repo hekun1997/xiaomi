@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
 import com.xiaomi.dao.TypeMapper;
 import com.xiaomi.pojo.Type;
@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author hekun
+ */
 @CacheConfig(cacheNames = "types", cacheManager = "cacheManager")
 @Service
 public class TypeServiceImpl implements TypeService {
     @Autowired
-    TypeMapper typeMapper = null;
+    private TypeMapper typeMapper;
 
     @Cacheable(key = "'getAllType'")
     @Override

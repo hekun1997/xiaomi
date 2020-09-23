@@ -1,10 +1,8 @@
 package com.xiaomi.dao;
 
-import com.github.pagehelper.Page;
 import com.xiaomi.pojo.Goods;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
-import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 

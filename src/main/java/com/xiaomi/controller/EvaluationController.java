@@ -1,6 +1,5 @@
 package com.xiaomi.controller;
 
-import com.xiaomi.dao.EvaluationMapper;
 import com.xiaomi.pojo.Evaluation;
 import com.xiaomi.service.EvaluationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import java.util.List;
 @RequestMapping("/evaluation")
 public class EvaluationController {
     @Autowired
-    EvaluationService evaluationService = null;
+    private EvaluationService evaluationService;
 
     @RequestMapping(value = "",method = RequestMethod.GET)
     public ModelAndView getAllEvaluation(){

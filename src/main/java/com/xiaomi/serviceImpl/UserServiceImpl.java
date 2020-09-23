@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
 import com.xiaomi.dao.UserMapper;
 import com.xiaomi.pojo.User;
@@ -9,11 +9,14 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author hekun
+ */
 @CacheConfig(cacheNames = "users",cacheManager = "cacheManager")
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    UserMapper userMapper;
+    private UserMapper userMapper;
 
     @Cacheable(key = "#username")
     @Override

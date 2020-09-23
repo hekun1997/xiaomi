@@ -5,9 +5,6 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
 import com.xiaomi.configuration.AlipayConfig;
-import org.springframework.web.servlet.ModelAndView;
-
-import java.math.BigDecimal;
 
 public class AliPayTools {
     public static String pay(Integer cus_id,String goods_name,Integer goods_quantity,Float goods_price,String tradeing_flow) {

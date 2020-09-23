@@ -1,8 +1,5 @@
 package com.xiaomi.controller;
 
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.xiaomi.configuration.web.UserThread;
 import com.xiaomi.dao.*;
@@ -11,7 +8,6 @@ import com.xiaomi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,27 +19,18 @@ import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class IndexController {
     @Autowired
-    DefaultKaptcha defaultKaptcha ;
+    private DefaultKaptcha defaultKaptcha ;
     @Autowired
-    TypeService typeService ;
-    @Autowired
-    UserMapper userMapper;
-    @Autowired
-    RedisTemplate redisTemplate;
-    @Autowired
-    GoodsMapper goodsMapper;
+    private TypeService typeService ;
 
     @RequestMapping("/index")
     public ModelAndView index(HttpSession session){
         List<Type> types = typeService.getTypeForIndex();
-        Integer userId = (Integer) session.getAttribute(session.getId());
-        //User user = (User) session.getAttribute("user#"+userId);
-        User user = (User) UserThread.get();
+        User user = UserThread.get();
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("Types",types);
         mv.addObject("User",user);

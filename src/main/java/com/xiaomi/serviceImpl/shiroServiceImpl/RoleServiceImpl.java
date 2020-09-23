@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl.shiroServiceImpl;
+package com.xiaomi.serviceImpl.shiroServiceImpl;
 
 import com.xiaomi.dao.shiroMapper.RoleMapper;
 import com.xiaomi.pojo.shiro.Role;
@@ -14,7 +14,7 @@ import java.util.Set;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
-    RoleMapper roleMapper;
+    private RoleMapper roleMapper;
 
     @Override
     public Set<String> getRoleByUsername(String username) {

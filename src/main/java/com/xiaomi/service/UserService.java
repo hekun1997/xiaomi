@@ -1,8 +1,6 @@
 package com.xiaomi.service;
 
-import com.xiaomi.dao.UserMapperProvider;
 import com.xiaomi.pojo.User;
-import org.springframework.cache.annotation.Cacheable;
 
 public interface UserService {
 

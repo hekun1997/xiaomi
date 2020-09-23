@@ -18,22 +18,10 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    UserService userService = null;
+    private UserService userService;
 
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public String login(String username, String password,String check, HttpSession session){
-//        User user = null;
-//        String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
-//        if (!check.equalsIgnoreCase(vrifyCode)) return "login";
-//        if ((user = userService.login(username,password)) != null) {
-//            //session.setAttribute(session.getId(),user.getId());
-//            //session.setAttribute("user#"+user.getId(),user);
-//
-//            session.setAttribute("userInfo",user);
-//
-//            return "redirect:/index";
-//        }
-//        return "login";
         String vrifyCode = (String) session.getAttribute("vrifyCode#"+session.getId());
         if (!check.equalsIgnoreCase(vrifyCode)) {
             return "login";
@@ -75,8 +63,6 @@ public class UserController {
         User user = new User(id,username,password,tel,signature,hobby,address);
         userService.updateUser(user);
         result.put("msg","修改成功!");
-//        session.removeAttribute("user#"+user.getId());
-//        session.setAttribute("user#"+user.getId(),user);
         session.removeAttribute("userInfo");
         session.setAttribute("userInfo",user);
         return result;
@@ -90,7 +76,6 @@ public class UserController {
 
     @RequestMapping("/loginOut/{id}")
     public String loginOut(@PathVariable("id")Integer id,HttpSession session){
-        //session.removeAttribute("user#"+id);
         session.removeAttribute("userInfo");
         return "redirect:/login";
     }

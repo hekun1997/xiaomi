@@ -3,10 +3,7 @@ package com.xiaomi.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.xiaomi.ServiceImpl.OrdersServiceImpl;
 import com.xiaomi.configuration.web.UserThread;
-import com.xiaomi.dao.GoodsVersionMapper;
-import com.xiaomi.dao.OrdersMapper;
 import com.xiaomi.pojo.Orders;
 import com.xiaomi.pojo.OrdersBody;
 import com.xiaomi.pojo.User;
@@ -65,12 +62,14 @@ public class OrdersController {
         Integer user_id = Integer.valueOf((String)params.get("user_id"));//user_id需要通过页面传递过来,ajax传递的user_id值还未增加,
         Integer goods_version = Integer.valueOf((String)params.get("goods_version"));
         Integer goods_color_id = Integer.valueOf((String)params.get("color_id"));
-        String trading_flow = TradingFlowUtil.get();//18位交易流水号
+        //18位交易流水号
+        String trading_flow = TradingFlowUtil.get();
         Integer goods_count = 0;
         BigDecimal goods_price = new BigDecimal(0.00);
         String note = "添加至购物车";
-        Integer status = 0; //0为未支付 ,1为已购买
-        Timestamp time = new Timestamp(new Date().getTime());
+        //0为未支付 ,1为已购买
+        Integer status = 0;
+        Timestamp time = new Timestamp(System.currentTimeMillis());
 
         Orders orders = new Orders(trading_flow,goods_id,goods_version,goods_color_id,user_id,time,goods_count,goods_price,note,status);
         ordersService.postOrders(orders);
@@ -80,7 +79,6 @@ public class OrdersController {
     @RequestMapping("/temp/{userId}")
     public ModelAndView tempOrders(@PathVariable("userId") Integer userId,HttpSession session){
         List<Orders> ordersList = ordersService.getTempOrdersByUserId(userId);
-        //User user = (User) session.getAttribute("user#"+userId);
         User user = UserThread.get();
         ModelAndView mv = new ModelAndView("gouwuche");
         mv.addObject("ordersSize",ordersList.size());
@@ -136,8 +134,8 @@ public class OrdersController {
             ordersService.updateOrdersByIdAndGoodsCount(ordersBody.getOrdersId(),ordersBody.getCount());
         }
 
-        String aLipayResult = AliPayTools.pay(userId,"批量购买",goodsCount,Float.valueOf(price.toString()),TradingFlowUtil.get());
+        String alipayResult = AliPayTools.pay(userId,"批量购买",goodsCount,Float.valueOf(price.toString()),TradingFlowUtil.get());
 
-        return aLipayResult;
+        return alipayResult;
     }
 }

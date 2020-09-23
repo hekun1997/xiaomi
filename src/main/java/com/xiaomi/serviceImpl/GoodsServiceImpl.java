@@ -1,6 +1,5 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
-import com.github.pagehelper.Page;
 import com.xiaomi.dao.GoodsMapper;
 import com.xiaomi.pojo.Goods;
 import com.xiaomi.service.GoodsService;
@@ -15,7 +14,7 @@ import java.util.List;
 @Service
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
-    GoodsMapper goodsMapper;
+    private GoodsMapper goodsMapper;
 
     @Cacheable(key = "'getAllGoods'")
     @Override

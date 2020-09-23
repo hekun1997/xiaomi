@@ -1,6 +1,5 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
-import com.xiaomi.dao.GoodsVersionMapper;
 import com.xiaomi.dao.OrdersMapper;
 import com.xiaomi.pojo.GoodsVersion;
 import com.xiaomi.pojo.Orders;
@@ -24,9 +23,9 @@ import java.util.List;
 public class OrdersServiceImpl implements OrdersService {
 
     @Autowired
-    OrdersMapper ordersMapper;
+    private OrdersMapper ordersMapper;
     @Autowired
-    GoodsVersionService goodsVersionService;
+    private GoodsVersionService goodsVersionService;
 
     @Cacheable(key = "'getAllOrders'")
     @Override
@@ -86,7 +85,9 @@ public class OrdersServiceImpl implements OrdersService {
             Integer newGoodsCount = goodsVersion.getGoods_count() - count;
             goodsVersionService.updateVersionById(goodsVersion.getVersion_id(),newGoodsCount);
             BigDecimal singlePrice = goodsVersion.getGoods_price();
-            BigDecimal resultPrice = singlePrice.multiply(new BigDecimal(count.doubleValue()));//goodsVersion.getGoods_price() * BigDecimal.valueOf((long)count);
+
+            //goodsVersion.getGoods_price() * BigDecimal.valueOf((long)count);
+            BigDecimal resultPrice = singlePrice.multiply(new BigDecimal(count.doubleValue()));
             ordersMapper.buyTempOrdersById(orders.getId(),count,resultPrice);
         }
         return null;

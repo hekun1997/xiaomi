@@ -1,13 +1,16 @@
 package com.xiaomi.dao;
 
 import com.xiaomi.pojo.User;
+import org.springframework.util.StringUtils;
 
+/**
+ * @author hekun
+ */
 public class UserMapperProvider {
 
     public String UpdateUser(User user){
-        String sql = "update user set ";
+        StringBuilder sql = new StringBuilder("update user set ");
 
-        Integer id = user.getId();
         String username = user.getUsername();
         String password = user.getPassword();
         String tel = user.getTel();
@@ -15,14 +18,26 @@ public class UserMapperProvider {
         String hobby = user.getHobby();
         String address = user.getAddress();
 
-        if (!username.equals("")) sql += "username = #{username}";
-        if (!password.equals("")) sql += ",password = #{password}";
-        if (!tel.equals("")) sql += ",tel = #{tel}";
-        if (!signature.equals("")) sql += ",signature = #{signature}";
-        if (!hobby.equals("")) sql += ",hobby = #{hobby}";
-        if (!address.equals("")) sql += ",address = #{address}";
+        if (StringUtils.hasText(username)) {
+            sql.append("username = #{username}");
+        }
+        if (StringUtils.hasText(password)) {
+            sql.append(",password = #{password}");
+        }
+        if (StringUtils.hasText(tel)) {
+            sql.append(",tel = #{tel}");
+        }
+        if (StringUtils.hasText(signature)) {
+            sql.append(",signature = #{signature}");
+        }
+        if (StringUtils.hasText(hobby)) {
+            sql.append(",hobby = #{hobby}");
+        }
+        if (StringUtils.hasText(address)) {
+            sql.append(",address = #{address}");
+        }
 
-        sql += " where id = #{id}";
-        return sql;
+        sql.append(" where id = #{id}");
+        return sql.toString();
     }
 }

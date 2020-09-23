@@ -47,11 +47,10 @@ public class DataBaseRealm extends AuthorizingRealm {
         User user = null;
         try{
             user = userService.login(username,password);
-
         }catch (Exception e){
             e.printStackTrace();
         }
-        if (null == user) {
+        if (user == null) {
             throw new AuthenticationException();
         }
         return new SimpleAuthenticationInfo(user, user.getPassword(), getName());

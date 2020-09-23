@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
 import com.xiaomi.dao.ColorMapper;
 import com.xiaomi.pojo.Color;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ColorServiceImpl implements ColorService {
     @Autowired
-    ColorMapper colorMapper;
+    private ColorMapper colorMapper;
 
     @Cacheable(key = "'getColorsByGoodsId'+#goods_id")
     @Override

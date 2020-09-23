@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
 import com.xiaomi.dao.GoodsVersionMapper;
 import com.xiaomi.pojo.GoodsVersion;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class GoodsVersionServiceImpl implements GoodsVersionService {
     @Autowired
-    GoodsVersionMapper goodsVersionMapper;
+    private GoodsVersionMapper goodsVersionMapper;
 
     @Cacheable(key = "'getVersionByGoodsId' + #goods_id")
     @Override

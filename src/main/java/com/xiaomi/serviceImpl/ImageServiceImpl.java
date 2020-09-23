@@ -1,4 +1,4 @@
-package com.xiaomi.ServiceImpl;
+package com.xiaomi.serviceImpl;
 
 import com.xiaomi.dao.ImageMapper;
 import com.xiaomi.pojo.GoodsImage;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class ImageServiceImpl implements ImageService {
     @Autowired
-    ImageMapper imageMapper;
+    private ImageMapper imageMapper;
 
     @Cacheable(key = "'getAllImage'")
     @Override

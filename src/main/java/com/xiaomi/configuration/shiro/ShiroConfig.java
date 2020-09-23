@@ -1,6 +1,5 @@
 package com.xiaomi.configuration.shiro;
 
-import com.mysql.fabric.xmlrpc.base.Data;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -14,6 +13,9 @@ import org.springframework.context.annotation.DependsOn;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * @author hekun
+ */
 @Configuration
 public class ShiroConfig {
 
@@ -26,15 +28,11 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setUnauthorizedUrl("/unauthorizedUrl");
 
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<>();
-        //authc 需要验证 anon
         filterChainDefinitionMap.put("/","anon");
         filterChainDefinitionMap.put("/js/**","anon");
         filterChainDefinitionMap.put("/css/**","anon");
         filterChainDefinitionMap.put("/image/**","anon");
-        //filterChainDefinitionMap.put("/user/**","authc");
         filterChainDefinitionMap.put("/orders/**","authc");
-
-        //filterChainDefinitionMap.put("/**","authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;

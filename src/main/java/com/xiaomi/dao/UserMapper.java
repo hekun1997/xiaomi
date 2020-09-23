@@ -3,7 +3,6 @@ package com.xiaomi.dao;
 import com.github.pagehelper.Page;
 import com.xiaomi.pojo.User;
 import org.apache.ibatis.annotations.*;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
