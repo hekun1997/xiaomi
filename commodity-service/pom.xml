@@ -22,10 +22,21 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.xiaomi</groupId>
+            <artifactId>common-component</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!--eureka-client-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
         </dependency>
     </dependencies>
 

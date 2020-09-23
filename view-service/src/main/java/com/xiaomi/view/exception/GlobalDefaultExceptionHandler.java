@@ -1,4 +1,4 @@
-package com.xiaomi.exception;
+package com.xiaomi.view.exception;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

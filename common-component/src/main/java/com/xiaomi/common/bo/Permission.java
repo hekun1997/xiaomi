@@ -1,4 +1,4 @@
-package com.xiaomi.pojo.shiro;
+package com.xiaomi.common.bo;
 
 import lombok.Data;
 

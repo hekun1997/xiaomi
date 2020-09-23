@@ -4,3 +4,9 @@ eureka:
       defaultZone: http://localhost:7011/eureka/
   instance:
     prefer-ip-address: true
+
+spring:
+  thymeleaf:
+    cache: false
+    encoding: UTF-8
+    mode: HTML5

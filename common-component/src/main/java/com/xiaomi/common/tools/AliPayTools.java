@@ -1,10 +1,11 @@
-package com.xiaomi.tools;
+package com.xiaomi.common.tools;
 
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-import com.xiaomi.configuration.AlipayConfig;
+import com.xiaomi.common.config.AlipayConfig;
+
 
 public class AliPayTools {
     public static String pay(Integer cus_id,String goods_name,Integer goods_quantity,Float goods_price,String tradeing_flow) {

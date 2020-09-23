@@ -9,8 +9,6 @@ import com.xiaomi.pojo.OrdersBody;
 import com.xiaomi.pojo.User;
 import com.xiaomi.service.GoodsVersionService;
 import com.xiaomi.service.OrdersService;
-import com.xiaomi.tools.AliPayTools;
-import com.xiaomi.tools.TradingFlowUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

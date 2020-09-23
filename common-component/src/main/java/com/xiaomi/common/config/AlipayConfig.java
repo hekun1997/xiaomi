@@ -1,4 +1,4 @@
-package com.xiaomi.configuration;
+package com.xiaomi.common.config;
 
 /**
  * @author hekun

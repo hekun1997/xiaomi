@@ -1,4 +1,4 @@
-package com.xiaomi.pojo;
+package com.xiaomi.common.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
