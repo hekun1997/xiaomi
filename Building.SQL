@@ -9,9 +9,9 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
-  `carid` varchar(64) NOT NULL,
-  `userid` varchar(64) DEFAULT NULL COMMENT '用户表id',
-  `proid` varchar(64) DEFAULT NULL COMMENT '商品id',
+  `carid` int(10) NOT NULL,
+  `userid` int(10) DEFAULT NULL COMMENT '用户表id',
+  `proid` int(10) DEFAULT NULL COMMENT '商品id',
   `quantity` int(11) DEFAULT NULL COMMENT '数量',
   `checked` int(11) DEFAULT NULL COMMENT '是否选择,1=已勾选,0=未勾选',
   `createtime` datetime DEFAULT NULL COMMENT '创建时间',
@@ -32,8 +32,8 @@ CREATE TABLE `cart` (
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
-  `cateid` varchar(64) NOT NULL COMMENT '类别Id',
-  `parentid` varchar(64) DEFAULT NULL COMMENT '父类别id当id=0时说明是根节点,一级类别',
+  `cateid` int(10) NOT NULL COMMENT '类别Id',
+  `parentid` int(10) DEFAULT NULL COMMENT '父类别id当id=0时说明是根节点,一级类别',
   `name` varchar(50) DEFAULT NULL COMMENT '类别名称',
   `status` int(1) DEFAULT '1' COMMENT '类别状态1-正常,2-已废弃',
   `sortorder` int(4) DEFAULT NULL COMMENT '排序编号,同类展示顺序,数值相等则自然排序',
@@ -51,10 +51,10 @@ CREATE TABLE `category` (
 -- ----------------------------
 DROP TABLE IF EXISTS `orderitem`;
 CREATE TABLE `orderitem` (
-  `id` varchar(64) NOT NULL COMMENT '订单子表id',
-  `orderid` varchar(64) DEFAULT NULL COMMENT '订单id',
-  `userid` varchar(64) DEFAULT NULL COMMENT '用户表id',
-  `proid` varchar(64) DEFAULT NULL COMMENT '商品id',
+  `id` int(10) NOT NULL COMMENT '订单子表id',
+  `orderid` int(10) DEFAULT NULL COMMENT '订单id',
+  `userid` int(10) DEFAULT NULL COMMENT '用户表id',
+  `proid` int(10) DEFAULT NULL COMMENT '商品id',
   `proname` varchar(100) DEFAULT NULL COMMENT '商品名称',
   `proimage` varchar(500) DEFAULT NULL COMMENT '商品图片地址',
   `currentunitprice` decimal(20,2) DEFAULT NULL COMMENT '生成订单时的商品单价，单位是元,保留两位小数',
@@ -80,9 +80,9 @@ CREATE TABLE `orderitem` (
 -- ----------------------------
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
-  `orderid` varchar(64) NOT NULL COMMENT '订单id',
-  `userid` varchar(64) DEFAULT NULL COMMENT '用户id',
-  `shoppingid` varchar(64) DEFAULT NULL,
+  `orderid` int(10) NOT NULL COMMENT '订单id',
+  `userid` int(10) DEFAULT NULL COMMENT '用户id',
+  `shoppingid` int(10) DEFAULT NULL,
   `payment` decimal(20,2) DEFAULT NULL COMMENT '实际付款金额,单位是元,保留两位小数',
   `paymenttype` int(4) DEFAULT NULL COMMENT '支付类型,1-在线支付',
   `postage` int(10) DEFAULT NULL COMMENT '运费,单位是元',
@@ -105,9 +105,9 @@ CREATE TABLE `orders` (
 -- ----------------------------
 DROP TABLE IF EXISTS `payinfo`;
 CREATE TABLE `payinfo` (
-  `payid` varchar(64) NOT NULL,
-  `orderid` varchar(64) DEFAULT NULL COMMENT '订单id',
-  `userid` varchar(64) DEFAULT NULL COMMENT '用户表id',
+  `payid` int(10) NOT NULL,
+  `orderid` int(10) DEFAULT NULL COMMENT '订单id',
+  `userid` int(10) DEFAULT NULL COMMENT '用户表id',
   `payplatform` int(10) DEFAULT NULL COMMENT '支付平台:1-支付宝,2-微信',
   `platformnumber` varchar(200) DEFAULT NULL COMMENT '支付流水号',
   `platformstatus` varchar(20) DEFAULT NULL COMMENT '支付状态',
@@ -129,8 +129,8 @@ CREATE TABLE `payinfo` (
 -- ----------------------------
 DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
-  `proid` varchar(64) NOT NULL COMMENT '商品id',
-  `cateid` varchar(64) DEFAULT NULL COMMENT '类别Id',
+  `proid` int(10) NOT NULL COMMENT '商品id',
+  `cateid` int(10) DEFAULT NULL COMMENT '类别Id',
   `name` varchar(100) NOT NULL COMMENT '商品名称',
   `subtitle` varchar(200) DEFAULT NULL COMMENT '商品副标题',
   `mainimage` varchar(500) DEFAULT NULL COMMENT '产品主图,url相对地址',
@@ -155,9 +155,9 @@ CREATE TABLE `product` (
 -- ----------------------------
 DROP TABLE IF EXISTS `shopping`;
 CREATE TABLE `shopping` (
-  `shoppingid` varchar(64) NOT NULL,
-  `userid` varchar(64) DEFAULT NULL COMMENT '用户表id',
-  `orderid` varchar(64) DEFAULT NULL COMMENT '订单id',
+  `shoppingid` int(10) NOT NULL,
+  `userid` int(10) DEFAULT NULL COMMENT '用户表id',
+  `orderid` int(10) DEFAULT NULL COMMENT '订单id',
   `receivername` varchar(20) DEFAULT NULL COMMENT '收货姓名',
   `receiverphone` varchar(20) DEFAULT NULL COMMENT '收货固定电话',
   `receivermobile` varchar(20) DEFAULT NULL COMMENT '收货移动电话',
@@ -183,7 +183,7 @@ CREATE TABLE `shopping` (
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `userid` varchar(64) NOT NULL COMMENT '用户表id',
+  `userid` int(10) NOT NULL COMMENT '用户表id',
   `username` varchar(50) NOT NULL COMMENT '用户名',
   `password` varchar(50) NOT NULL COMMENT '用户密码，MD5加密',
   `phone` varchar(20) DEFAULT NULL,
