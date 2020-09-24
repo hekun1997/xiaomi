@@ -27,9 +27,9 @@ import java.util.Map;
 @RequestMapping("/orders")
 public class OrderApiRest {
     @Autowired
-    OrdersService ordersService = null;
-    @Autowired
-    GoodsVersionService goodsVersionService = null;
+    OrdersService ordersService;
+    //@Autowired
+    //GoodsVersionService goodsVersionService = null;
 
     @RequestMapping(value = "/detail/{id}",method = RequestMethod.GET)
     public ModelAndView getOrdersById(@PathVariable("id")Integer id){
@@ -41,7 +41,7 @@ public class OrderApiRest {
     public ModelAndView getOrdersByUserId(@PathVariable("userId")Integer userId, HttpSession session){
         ModelAndView mv = new ModelAndView("dingdanzhongxin");
         List<Orders> orders = ordersService.getOrderByUserId(userId);
-        User user = UserThread.get();
+        User user = null;//UserThread.get();
         mv.addObject("Orders",orders);
         mv.addObject("User",user);
         return mv;
@@ -78,7 +78,7 @@ public class OrderApiRest {
     @RequestMapping("/temp/{userId}")
     public ModelAndView tempOrders(@PathVariable("userId") Integer userId,HttpSession session){
         List<Orders> ordersList = ordersService.getTempOrdersByUserId(userId);
-        User user = UserThread.get();
+        User user = null;//UserThread.get();
         ModelAndView mv = new ModelAndView("gouwuche");
         mv.addObject("ordersSize",ordersList.size());
         mv.addObject("ordersList",ordersList);
@@ -92,7 +92,7 @@ public class OrderApiRest {
         Integer orderId = Integer.valueOf((String)params.get("orderId"));
         Integer count = Integer.valueOf((String)params.get("count"));
         Orders orders = ordersService.getOrderById(orderId);
-        Integer maxCount = goodsVersionService.getVersionById(orders.getVersion()).getGoodsCount();
+        Integer maxCount = 1;//goodsVersionService.getVersionById(orders.getVersion()).getGoodsCount();
         if (count <= maxCount) {
             return -1;
         }
@@ -111,28 +111,28 @@ public class OrderApiRest {
             requestStr += key;
         }
 
-        JSONArray object = JSON.parseArray(requestStr);
-        List<OrdersBody> paramsList = new ArrayList<>();
+//        JSONArray object = JSON.parseArray(requestStr);
+//        List<OrdersBody> paramsList = new ArrayList<>();
+//
+//        for (Object obj : object){
+//            JSONObject jsonObject = JSON.parseObject(obj.toString());
+//            OrdersBody ordersBody = new OrdersBody();
+//            ordersBody.setOrdersId(jsonObject.getInteger("orderId"));
+//            ordersBody.setCount(jsonObject.getInteger("count"));
+//            paramsList.add(ordersBody);
+//        }
+//
+//        for (OrdersBody ordersBody : paramsList){
+//            goodsCount += ordersBody.getCount();
+//            Orders orders = ordersService.getOrderById(ordersBody.getOrdersId());
+//            userId = orders.getId();
+//            BigDecimal tempPrice = new BigDecimal(ordersBody.getCount()).multiply(orders.getGoodsVersion().getGoodsPrice());
+//            price = price.add(tempPrice);
+//            ordersService.updateOrdersByIdAndGoodsCount(ordersBody.getOrdersId(),ordersBody.getCount());
+//        }
+//
+//        String alipayResult = AliPayTools.pay(userId,"批量购买",goodsCount,Float.valueOf(price.toString()),TradingFlowUtil.get());
 
-        for (Object obj : object){
-            JSONObject jsonObject = JSON.parseObject(obj.toString());
-            OrdersBody ordersBody = new OrdersBody();
-            ordersBody.setOrdersId(jsonObject.getInteger("orderId"));
-            ordersBody.setCount(jsonObject.getInteger("count"));
-            paramsList.add(ordersBody);
-        }
-
-        for (OrdersBody ordersBody : paramsList){
-            goodsCount += ordersBody.getCount();
-            Orders orders = ordersService.getOrderById(ordersBody.getOrdersId());
-            userId = orders.getId();
-            BigDecimal tempPrice = new BigDecimal(ordersBody.getCount()).multiply(orders.getGoodsVersion().getGoodsPrice());
-            price = price.add(tempPrice);
-            ordersService.updateOrdersByIdAndGoodsCount(ordersBody.getOrdersId(),ordersBody.getCount());
-        }
-
-        String alipayResult = AliPayTools.pay(userId,"批量购买",goodsCount,Float.valueOf(price.toString()),TradingFlowUtil.get());
-
-        return alipayResult;
+        return null;//alipayResult;
     }
 }
