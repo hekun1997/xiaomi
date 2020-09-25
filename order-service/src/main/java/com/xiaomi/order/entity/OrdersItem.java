@@ -32,19 +32,19 @@ public class OrdersItem implements Serializable {
 	 * 订单id
 	 */
    	@Column(name = "orderid" )
-	private Long orderid;
+	private Integer orderid;
 
 	/**
 	 * 用户表id
 	 */
    	@Column(name = "userid" )
-	private Long userid;
+	private Integer userid;
 
 	/**
 	 * 商品id
 	 */
    	@Column(name = "proid" )
-	private Long proid;
+	private Integer proid;
 
 	/**
 	 * 商品名称
@@ -68,7 +68,7 @@ public class OrdersItem implements Serializable {
 	 * 商品数量
 	 */
    	@Column(name = "quantity" )
-	private Long quantity;
+	private Integer quantity;
 
 	/**
 	 * 商品总价,单位是元,保留两位小数

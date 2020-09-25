@@ -29,19 +29,19 @@ public class PayInfo implements Serializable {
 	 * 订单id
 	 */
    	@Column(name = "orderid" )
-	private Long orderid;
+	private Integer orderid;
 
 	/**
 	 * 用户表id
 	 */
    	@Column(name = "userid" )
-	private Long userid;
+	private Integer userid;
 
 	/**
 	 * 支付平台:1-支付宝,2-微信
 	 */
    	@Column(name = "payplatform" )
-	private Long payplatform;
+	private Integer payplatform;
 
 	/**
 	 * 支付流水号

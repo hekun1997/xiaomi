@@ -29,13 +29,13 @@ public class Cart implements Serializable {
 	 * 用户表id
 	 */
    	@Column(name = "userid" )
-	private Long userid;
+	private Integer userid;
 
 	/**
 	 * 商品id
 	 */
    	@Column(name = "proid" )
-	private Long proid;
+	private Integer proid;
 
 	/**
 	 * 数量
@@ -47,7 +47,7 @@ public class Cart implements Serializable {
 	 * 是否选择,1=已勾选,0=未勾选
 	 */
    	@Column(name = "checked" )
-	private Long checked;
+	private Integer checked;
 
 	/**
 	 * 创建时间

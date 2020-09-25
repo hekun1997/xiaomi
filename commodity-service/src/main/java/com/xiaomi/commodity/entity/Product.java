@@ -16,12 +16,12 @@ public class Product implements Serializable {
 	/**
 	 * 商品id
 	 */
-	private Long proid;
+	private Integer proid;
 
 	/**
 	 * 类别Id
 	 */
-	private Long cateid;
+	private Integer cateid;
 
 	/**
 	 * 商品名称
@@ -61,7 +61,7 @@ public class Product implements Serializable {
 	/**
 	 * 商品状态.1-在售 2-下架 3-删除
 	 */
-	private Long status;
+	private Integer status;
 
 	/**
 	 * 创建时间

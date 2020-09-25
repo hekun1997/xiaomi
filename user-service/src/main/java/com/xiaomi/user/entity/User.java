@@ -2,6 +2,8 @@ package com.xiaomi.user.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -28,6 +30,7 @@ public class User implements Serializable {
 	 * 用户表id
 	 */
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
    	@Column(name = "userid" )
 	private Integer userid;
 
@@ -62,7 +65,7 @@ public class User implements Serializable {
 	 * 角色0-管理员,1-普通用户
 	 */
    	@Column(name = "role" )
-	private Long role;
+	private Integer role;
 
 	/**
 	 * 创建时间

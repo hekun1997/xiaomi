@@ -20,6 +20,7 @@
         <module>commodity-service</module>
         <module>order-service</module>
         <module>eureka-server</module>
+        <module>permission-service</module>
     </modules>
 
     <groupId>com.xiaomi</groupId>

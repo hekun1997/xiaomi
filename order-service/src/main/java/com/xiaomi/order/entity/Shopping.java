@@ -28,13 +28,13 @@ public class Shopping implements Serializable {
 	 * 用户表id
 	 */
    	@Column(name = "userid" )
-	private Long userid;
+	private Integer userid;
 
 	/**
 	 * 订单id
 	 */
    	@Column(name = "orderid" )
-	private Long orderid;
+	private Integer orderid;
 
 	/**
 	 * 收货姓名

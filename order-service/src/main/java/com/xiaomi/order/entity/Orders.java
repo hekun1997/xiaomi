@@ -32,10 +32,10 @@ public class Orders implements Serializable {
 	 * 用户id
 	 */
    	@Column(name = "userid" )
-	private Long userid;
+	private Integer userid;
 
    	@Column(name = "shoppingid" )
-	private Long shoppingid;
+	private Integer shoppingid;
 
 	/**
 	 * 实际付款金额,单位是元,保留两位小数
@@ -47,7 +47,7 @@ public class Orders implements Serializable {
 	 * 支付类型,1-在线支付
 	 */
    	@Column(name = "paymenttype" )
-	private Long paymenttype;
+	private Integer paymenttype;
 
 	/**
 	 * 运费,单位是元
@@ -59,7 +59,7 @@ public class Orders implements Serializable {
 	 * 订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭
 	 */
    	@Column(name = "status" )
-	private Long status;
+	private Integer status;
 
 	/**
 	 * 支付时间

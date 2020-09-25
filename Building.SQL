@@ -191,10 +191,74 @@ CREATE TABLE `user` (
   `answer` varchar(100) DEFAULT NULL COMMENT '找回密码答案',
   `role` int(4) NOT NULL COMMENT '角色0-管理员,1-普通用户',
   `createtime` datetime NOT NULL COMMENT '创建时间',
-  `updatetime` datetime NOT NULL COMMENT '更新时间',
+  `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
   PRIMARY KEY (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for sys_role
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_role`;
+CREATE TABLE `sys_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `available` char(1) DEFAULT '0' COMMENT '是否可用0可用  1不可用',
+  `role` varchar(20) DEFAULT NULL COMMENT '角色标识程序中判断使用,如"admin"',
+  `description` varchar(100) DEFAULT NULL COMMENT '角色描述,UI界面显示使用',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
+  `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role` (`role`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for sys_user_role
+-- ----------------------------
+
+DROP TABLE IF EXISTS `sys_user_role`;
+CREATE TABLE `sys_user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `uid` int(11) DEFAULT NULL COMMENT '用户id',
+  `role_id` int(11) DEFAULT NULL COMMENT '角色id',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
+  `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
+  KEY `uid` (`uid`) USING BTREE,
+  KEY `role_id` (`role_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for sys_permission
+-- ----------------------------
+
+DROP TABLE IF EXISTS `sys_permission`;
+CREATE TABLE `sys_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `parent_id` int(11) DEFAULT NULL COMMENT '父编号,本权限可能是该父编号权限的子权限',
+  `parent_ids` varchar(20) DEFAULT NULL COMMENT '父编号列表',
+  `permission` varchar(100) DEFAULT NULL COMMENT '权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view',
+  `resource_type` varchar(20) DEFAULT NULL COMMENT '资源类型，[menu|button]',
+  `url` varchar(200) DEFAULT NULL COMMENT '资源路径 如：/userinfo/list',
+  `name` varchar(50) DEFAULT NULL COMMENT '权限名称',
+  `available` char(1) DEFAULT '0' COMMENT '是否可用0可用  1不可用',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
+  `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for sys_role_permission
+-- ----------------------------
+
+DROP TABLE IF EXISTS `sys_role_permission`;
+CREATE TABLE `sys_role_permission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `role_id` int(11) DEFAULT NULL COMMENT '角色id',
+  `permission_id` int(11) DEFAULT NULL COMMENT '权限id',
+  `createtime` datetime NOT NULL COMMENT '创建时间',
+  `updatetime` datetime DEFAULT NULL COMMENT '更新时间',
+  KEY `role_id` (`role_id`) USING BTREE,
+  KEY `permission_id` (`permission_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
