@@ -30,10 +30,10 @@ public class UserServiceApplicationTest
         User user = User.builder()
                 .username("hekun")
                 .password("123")
-                .role(0L)
+                .role(0)
                 .createtime(new Date(System.currentTimeMillis()))
                 .build();
-        Integer userId = userRepository.save(user).getUserid();
+        Integer userId = userRepository.save(user).getId();
         Assert.assertNotNull("save failed.",userId);
     }
 }
