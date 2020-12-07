@@ -16,5 +16,6 @@ public class ViewServiceApplicationTest
     public void shouldAnswerWithTrue()
     {
         assertTrue( true );
+        System.out.println("hello world!");
     }
 }
