@@ -1,4 +1,4 @@
-package com.xiaomi;
+package com.xiaomi.message.test;
 
 import static org.junit.Assert.assertTrue;
 

@@ -36,4 +36,9 @@ public class UserServiceApplicationTest
         Integer userId = userRepository.save(user).getId();
         Assert.assertNotNull("save failed.",userId);
     }
+
+    @Test
+    public void test(){
+        System.out.println("hello world!");
+    }
 }
