@@ -22,6 +22,7 @@
         <module>eureka-server</module>
         <module>permission-service</module>
         <module>gateway-service</module>
+        <module>config-service</module>
     </modules>
 
     <groupId>com.xiaomi</groupId>
@@ -65,11 +66,6 @@
             <version>1.18.2</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.rabbitmq</groupId>
-            <artifactId>amqp-client</artifactId>
-            <version>4.2.1</version>
-        </dependency>
     </dependencies>
 
     <dependencyManagement>

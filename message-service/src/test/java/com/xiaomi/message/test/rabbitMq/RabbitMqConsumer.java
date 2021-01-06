@@ -1,4 +1,4 @@
-package com.xiaomi.message.test;
+package com.xiaomi.message.test.rabbitMq;
 
 import com.rabbitmq.client.*;
 import lombok.SneakyThrows;
